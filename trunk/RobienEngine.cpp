@@ -6,12 +6,11 @@
 // Description : Hello World in C, Ansi-style
 //============================================================================
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
 
-int main(void) {
-	int a;
-	puts("Hello World!!!");
-	scanf("%d", &a);
-	return EXIT_SUCCESS;
+int main() {
+	std::cout << "Hello World !!!" << std::endl;
+
+	return 0;
+
 }
