@@ -7,12 +7,11 @@
 //============================================================================
 
 #include <iostream>
-#include <stdlib.h>
-#include <stdio.h>
 #include <SDL/SDL.h>
 
 
-int main() {
+int main(int argc, char **argv)
+{
 	std::cout << "Hello World !!!" << std::endl;
     SDL_Init(SDL_INIT_VIDEO);
 
