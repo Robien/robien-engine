@@ -3,7 +3,12 @@ cmake_minimum_required(VERSION 2.6)
 #Déclaration du projet
 project(RobienEngine)
 
+IF(MINGW)
 FIND_PACKAGE(libSDL REQUIRED)
+ELSE(MINGW)
+FIND_PACKAGE(SDL REQUIRED)
+ENDIF(MINGW)
+
 INCLUDE_DIRECTORIES(${SDL_INCLUDE_DIR})
 
 
@@ -33,6 +38,7 @@ ENDIF(MINGW)
 target_link_libraries(
 	robien
 	${MINGWLIB}
+	${SDL_LIBRARY}
 	${SDL_LIBRARIES}
 	${SDL_LIBRARIES2}
 )
