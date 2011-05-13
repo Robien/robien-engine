@@ -3,6 +3,9 @@
 
 =Sommaire=
   * [#=Introduction= Introduction]
+  * [#=Conventions= Introduction]
+    * [#*Indentation* Introduction]
+  * [#= Autre = Introduction]
 
 
 =Introduction=
@@ -10,7 +13,7 @@
 Afin de garder un code clair et compréhensible pour les personnes travaillant sur Robien-Engin ainsi que toutes personnes susceptible de farfouiller dans le code source, différente convention vont être établies. Tout Code ne respectant pas ces règles devras être revu par son auteur.
 
 
-= Conventions =
+=Conventions=
 
   * *Entête des fichiers*
 Le projet Robien-Engine étant sous licence GNU GPL v2, un copyright devra se trouver en entête de vos fichiers. Vous pouvez retrouvez cette entête dans le fichier "copyright".
