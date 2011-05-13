@@ -2,18 +2,21 @@
 #labels Phase-Implementation,Phase-Requirements
 
 =Sommaire=
-  * [#=Introduction= Introduction]
-  * [#=Conventions= Introduction]
-    * [#*Indentation* Introduction]
-  * [#= Autre = Introduction]
+  * [#Intro Introduction]
+  * [#Conv Conventions]
+    * [#Ind Indentation]
+    * [#Regn Règles de nommage]
+    * [#Orga Organisation des sources]
+    * [#Regw Règles de publication Wiki]
+  * [#Autre Autre]
 
 
-=Introduction=
+=<A NAME="Intro"> Introduction </A>=
 
 Afin de garder un code clair et compréhensible pour les personnes travaillant sur Robien-Engin ainsi que toutes personnes susceptible de farfouiller dans le code source, différente convention vont être établies. Tout Code ne respectant pas ces règles devras être revu par son auteur.
 
 
-=Conventions=
+=<A NAME="Conv">Conventions=
 
   * *Entête des fichiers*
 Le projet Robien-Engine étant sous licence GNU GPL v2, un copyright devra se trouver en entête de vos fichiers. Vous pouvez retrouvez cette entête dans le fichier "copyright".
@@ -30,14 +33,14 @@ Une seconde entête concernant le fichier devra être ajouté de la forme:
 
 Un template Eclipse est mis a votre disposition [http://code.google.com/p/robien-engine/downloads/detail?name=CodeTemplates.tar.gz&can=2&q= 'Template Eclipse'] qui introduira automatiquement les deux entêtes lorsque vous créez un nouveau fichier/classe.
 
-  * *Indentation*
+  * *<A NAME="Ind">Indentation</A>*
 
-  * *Règles de nommage*
+  * *<A NAME="Regn">Règles de nommage</A>*
 
-  * *Organisation des sources*
+  * *<A NAME="Orga">Organisation des sources</A>*
 
-  * *Règle de publication Wiki*
+  * *<A NAME="Regw">Règles de publication Wiki</A>*
 
-= Autre =
+= <A NAME="Autre">Autre</A> =
 
 La liste n'est pas exhaustive: rajouter des conventions qui vous semblent importantes dans cette partie, elles seront examinées et officialisées si nécessaire.
