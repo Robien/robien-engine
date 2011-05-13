@@ -1,9 +1,11 @@
-#summary One-sentence summary of this page.
+#summary Définition des conventions pour la rédaction du code de Robien-Engine
 #labels Phase-Implementation,Phase-Requirements
-_Définition des conventions pour la rédaction du code de Robien-Engine_
-= Sommaire =
 
-= Introduction =
+=Sommaire=
+  * [=Introduction= Introduction]
+
+
+=Introduction=
 
 Afin de garder un code clair et compréhensible pour les personnes travaillant sur Robien-Engin ainsi que toutes personnes susceptible de farfouiller dans le code source, différente convention vont être établies. Tout Code ne respectant pas ces règles devras être revu par son auteur.
 
