@@ -2,7 +2,7 @@
 #labels Phase-Implementation,Phase-Requirements
 
 =Sommaire=
-  * [=Introduction= Introduction]
+  * [#=Introduction= Introduction]
 
 
 =Introduction=
