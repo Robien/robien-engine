@@ -28,6 +28,7 @@
 #include <SDL/SDL.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include <boost/numeric/conversion/cast.hpp> 
 #include <iostream>
 #include "../include/WindowManager.h"
 #include "../include/EventManager.h"
@@ -127,10 +128,13 @@ void setup_opengl(int hauteur, int largeur)
 
 int main(int argc, char **argv)
 {
+ using boost::numeric_cast;
 	int hauteur = 800;
 	int largeur = 600;
 	int bits = 32;
 	int flags = 0;
+      int i=42;
+      short s=numeric_cast<short>(i);
 	/*SDL_Init(SDL_INIT_VIDEO);
 	flags = SDL_OPENGL;
 	SDL_SetVideoMode(hauteur, largeur, bits, flags);*/

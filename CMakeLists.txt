@@ -3,6 +3,21 @@ cmake_minimum_required(VERSION 2.6)
 #Déclaration du projet
 project(RobienEngine)
 
+
+include(FindBoost)
+
+set(Boost_USE_STATIC_LIBS ON)
+set(Boost_USE_MULTITHREAD ON)
+
+
+find_package(
+	Boost 
+	1.36.0
+	REQUIRED filesystem thread
+)
+
+
+
 IF(MINGW)
 FIND_PACKAGE(libSDL REQUIRED)
 ELSE(MINGW)
@@ -10,6 +25,9 @@ FIND_PACKAGE(SDL REQUIRED)
 ENDIF(MINGW)
 
 FIND_PACKAGE(OpenGL REQUIRED)
+
+link_directories(${Boost_LIBRARY_DIRS})
+include_directories(${Boost_INCLUDE_DIRS})
 
 INCLUDE_DIRECTORIES(${SDL_INCLUDE_DIR})
 INCLUDE_DIRECTORIES(${OPENGL_INCLUDE_DIR})
@@ -45,6 +63,7 @@ target_link_libraries(
 	${OPENGL_glu_LIBRARY}
 	${SDL_LIBRARIES}
 	${SDL_LIBRARIES2}
+	${Boost_LIBRARIES}
 )
 
 
