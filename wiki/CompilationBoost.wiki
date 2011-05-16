@@ -17,7 +17,7 @@ bon, ok, je vais essayer :
  * copier le fichier tools/build/v2/engine/stage/bin.ntx86/bjam.exe dans le dossier racine de boost.
  * dans le "cmd" lancer dans la racine de boost la commande 
 {{{
-bjam --build-dir="C:\chemin\vers\boost" --toolset=gcc --build -type=complete stage
+bjam --build-dir="C:\chemin\vers\boost" --toolset=gcc --build-type=complete stage
 }}}
 là ça compile pendant quelques temps.
 à la fin de la compil' :
