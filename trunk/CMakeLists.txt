@@ -31,14 +31,24 @@ include_directories(${Boost_INCLUDE_DIRS})
 
 INCLUDE_DIRECTORIES(${SDL_INCLUDE_DIR})
 INCLUDE_DIRECTORIES(${OPENGL_INCLUDE_DIR})
+#Génération de la liste des fichiers sources
+file(
+	GLOB
+	include_files
+	sources/video/include/
+	sources/utils/include/
+	sources/
+)
 
+INCLUDE_DIRECTORIES(${include_files})
 
 #Génération de la liste des fichiers sources
 file(
 	GLOB_RECURSE
 	source_files
-	src/*
-	include/*
+	sources/video/src/*.cpp
+	sources/utils/src/*.cpp
+	sources/*.cpp
 )
 
 #Déclaration de l'exécutable
