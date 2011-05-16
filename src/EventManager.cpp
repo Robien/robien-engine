@@ -38,12 +38,12 @@ EventManager::~EventManager()
 	// TODO Auto-generated destructor stub
 }
 
-void EM_EnableKeyRepeat(int delay, int interval)
+void EventManager::EM_EnableKeyRepeat(int delay, int interval)
 {
 	SDL_EnableKeyRepeat(delay, interval);
 }
 
-void EM_DisableKeyRepeat()
+void EventManager::EM_DisableKeyRepeat()
 {
 	SDL_EnableKeyRepeat(0, 0);
 }
