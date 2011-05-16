@@ -13,7 +13,7 @@ bon, ok, je vais essayer :
  * ouvrir un "cmd"
  * aller dans le dossier tools\build\v2\engine
  * lancer le script build_dist.bat (il devrait y avoir une erreur, c'est normal)
- * lancer "build gcc" => ça devrais compiler pendant pas mal de temps.
+ * lancer "build_dist.bat gcc" => ça devrais compiler pendant pas mal de temps.
 
 à la fin de la compil' :
  * lancer Cmake (gui)
