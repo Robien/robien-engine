@@ -35,12 +35,50 @@ Un template Eclipse est mis a votre disposition [http://code.google.com/p/robien
 
   * *<A NAME="Ind">Indentation</A>*
 
+Les tabulations sont faites de 4 espaces.
+
+il ne faut pas utiliser la "notation égyptienne"
+{{{
+fonction(){
+}
+}}}
+C'est mal
+
+{{{
+fonction()
+{
+}
+}}}
+C'est bien
+
+{{{
+while(true)
+{
+    instruction1;
+    instruction2;
+    instruction3;
+}
+}}}
+C'est bien
+
+
   * *<A NAME="Regn">Règles de nommage</A>*
 
+les headers auront l'extention .h et les implémentation .cpp
+Notation Camel : les noms de variable (etc ...) devront être écrite en minuscule avec une majuscule au début de chaque mot (ex : unePommeRouge)
+Les classes auront leur nom qui commence par une majuscule et les méthodes et les attributs par une minuscule.
+
   * *<A NAME="Orga">Organisation des sources</A>*
+
+Les fichiers de codes sont dans un dossier "sources".
+Dans "sources", le code est divisé suivant les différents core (ex: gui, network ...)
+A l'interieur, il y a un dossier "src" et un dossier "include" pour les cpp et les h
+Chaque core aura un namespace a lui.
+
+
 
   * *<A NAME="Regw">Règles de publication Wiki</A>*
 
 = <A NAME="Autre">Autre</A> =
 
-La liste n'est pas exhaustive: rajouter des conventions qui vous semblent importantes dans cette partie, elles seront examinées et officialisées si nécessaire.
+La liste n'est pas exhaustive: rajoutez des conventions qui vous semblent importantes dans cette partie, elles seront examinées et officialisées si nécessaire.
