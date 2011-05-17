@@ -19,54 +19,45 @@
  */
 /****************************************
  *	Project		: robien-engine
- * 	Name File	: Referenced.h
+ * 	Name File	: Singleton.h
  *
  *  Created on	: 17 mai 2011
  *      Author	: Romain
  ***************************************/
 
-#ifndef REFERENCED_H_
-#define REFERENCED_H_
+#ifndef SINGLETON_H_
+#define SINGLETON_H_
 
-#include <boost/intrusive_ptr.hpp>
-
-class Referenced
+template<typename T>
+class Singleton
 {
 public:
-    Referenced();
-    virtual ~Referenced();
-    friend void intrusive_ptr_add_ref(Referenced* p)
+
+    static inline bool isDefine()
     {
-        ++p->references;
-    }
-    friend void intrusive_ptr_release(Referenced* p)
-    {
-        if (--p->references == 0)
-            delete p;
-    }
-    inline unsigned int getNombreReference()
-    {
-        return references;
-    }
-    inline bool exist()
-    {
-        return references > 0;
-    }
-    inline bool isUndefined()
-    {
-        return references == 0;
+        return (s == 0);
     }
 
+    static T* get()
+    {
+        if (isDefine())
+        {
+            s = new T;
+        }
+        return (static_cast<T*> (s));
+    }
+    static T* s;
 protected:
-    Referenced& operator=(const Referenced&)
+    Singleton()
     {
-        return *this;
     }
-private:
-    Referenced(const Referenced& other);
+    virtual ~Singleton()
+    {
+    }
 
-private:
-    unsigned int references;
 };
 
-#endif /* REFERENCED_H_ */
+template<typename T>
+T* Singleton<T>::s = 0;
+
+#endif /* SINGLETON_H_ */
