@@ -29,11 +29,12 @@
 #define EVENTMANAGER_H_
 
 #include <SDL/SDL.h>
+#include "../../utils/include/Referenced.h"
 
 /*
  *Class EventManager
  */
-class EventManager
+class EventManager : public Referenced
 {
 public:
 	EventManager();

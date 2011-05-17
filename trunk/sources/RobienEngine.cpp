@@ -33,6 +33,7 @@
 #include <iostream>
 #include "video/include/WindowManager.h"
 #include "video/include/EventManager.h"
+#include "utils/include/SmartPtr.h"
 
 int etape = 0;
 //SDL_Event event;
@@ -153,7 +154,7 @@ int main(int argc, char **argv) {
 	 flags = SDL_OPENGL;
 	 SDL_SetVideoMode(hauteur, largeur, bits, flags);*/
 	WindowManager fen(hauteur, largeur);
-	EventManager* E = new EventManager();
+	SmartPtr<EventManager> E = new EventManager();
 	setup_opengl(hauteur, largeur);
 	draw_screen(E);
 	return 0;
