@@ -29,17 +29,21 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <boost/numeric/conversion/cast.hpp> 
+#include <boost/lexical_cast.hpp>
 #include <iostream>
 #include "video/include/WindowManager.h"
 #include "video/include/EventManager.h"
 
 int etape = 0;
 //SDL_Event event;
-void draw_screen(EventManager* E)
-{
-	while (1)
-	{
+void draw_screen(EventManager* E) {
+	//creation de variable pour le temps
+	double current_time = 0;
+	double last_time = 0;
+	double fps = 0;
+	int n = 0;
 
+	while (1) {
 		etape = (etape + 1) % 360;
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glMatrixMode(GL_MODELVIEW);
@@ -101,21 +105,32 @@ void draw_screen(EventManager* E)
 		glVertex3i(1, -1, -1);
 		glEnd();
 		SDL_GL_SwapBuffers();
-		//SDL_PollEvent(&event);
-		if (E->EM_Quit() || E->EM_KeyDown(SDLK_ESCAPE))
+		//reduire les fps
+
+
+		//TRUC PAS BEAU pour afficher les fps
+		current_time = SDL_GetTicks() / 1000;
+		n++;
+		if ((current_time - last_time) >= 1.0) {
+			// nombre de frames par seconde
+			fps = n;
+			n = 0;
+			last_time = current_time;
+			SDL_WM_SetCaption(("fps : " + boost::lexical_cast<std::string>((int) fps)).c_str(),	NULL);
+
+		} else /* Si ça fait moins de 30ms depuis le dernier tour de boucle, on endort le programme le temps qu'il faut */
 		{
+			SDL_Delay(30 - (current_time - last_time));
+		}
+
+		//SDL_PollEvent(&event);
+		if (E->EM_Quit() || E->EM_KeyDown(SDLK_ESCAPE)) {
 			return;
 		}
-		/*if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)
-		{
-			//SDL_Quit();
-			return;
-		}*/
 	}
 }
 
-void setup_opengl(int hauteur, int largeur)
-{
+void setup_opengl(int hauteur, int largeur) {
 	float ratio = (float) hauteur / (float) largeur;
 	glClearColor(0, 0, 0, 0);
 	glViewport(0, 0, hauteur, largeur);
@@ -126,18 +141,17 @@ void setup_opengl(int hauteur, int largeur)
 	glEnable(GL_DEPTH_TEST);
 }
 
-int main(int argc, char **argv)
-{
- using boost::numeric_cast;
+int main(int argc, char **argv) {
+	using boost::numeric_cast;
 	int hauteur = 800;
 	int largeur = 600;
 	int bits = 32;
 	int flags = 0;
-      int i=42;
-      short s=numeric_cast<short>(i);
+	int i = 42;
+	short s = numeric_cast<short> (i);
 	/*SDL_Init(SDL_INIT_VIDEO);
-	flags = SDL_OPENGL;
-	SDL_SetVideoMode(hauteur, largeur, bits, flags);*/
+	 flags = SDL_OPENGL;
+	 SDL_SetVideoMode(hauteur, largeur, bits, flags);*/
 	WindowManager fen(hauteur, largeur);
 	EventManager* E = new EventManager();
 	setup_opengl(hauteur, largeur);
