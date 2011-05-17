@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.6)
 #Déclaration du projet
 project(RobienEngine)
 
+set(EXECUTABLE_OUTPUT_PATH bin)
 
 include(FindBoost)
 
@@ -31,12 +32,14 @@ include_directories(${Boost_INCLUDE_DIRS})
 
 INCLUDE_DIRECTORIES(${SDL_INCLUDE_DIR})
 INCLUDE_DIRECTORIES(${OPENGL_INCLUDE_DIR})
+
+INCLUDE_DIRECTORIES(sources)
+ADD_SUBDIRECTORY(sources)
+
 #Génération de la liste des fichiers sources
 file(
 	GLOB
 	include_files
-	sources/video/include/
-	sources/utils/include/
 	sources/
 )
 
@@ -44,10 +47,8 @@ INCLUDE_DIRECTORIES(${include_files})
 
 #Génération de la liste des fichiers sources
 file(
-	GLOB_RECURSE
+	GLOB
 	source_files
-	sources/video/src/*.cpp
-	sources/utils/src/*.cpp
 	sources/*.cpp
 )
 
@@ -74,6 +75,8 @@ target_link_libraries(
 	${SDL_LIBRARIES}
 	${SDL_LIBRARIES2}
 	${Boost_LIBRARIES}
+	utils
+	video
 )
 
 
