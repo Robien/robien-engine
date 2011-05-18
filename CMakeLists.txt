@@ -18,12 +18,18 @@ find_package(
 )
 
 
-
 IF(MINGW)
 FIND_PACKAGE(libSDL REQUIRED)
 ELSE(MINGW)
 FIND_PACKAGE(SDL REQUIRED)
 ENDIF(MINGW)
+
+IF(MINGW)
+  SET(MINGWLIB "mingw32")
+ELSE(MINGW)
+  SET(MINGWLIB )
+ENDIF(MINGW)
+
 
 FIND_PACKAGE(OpenGL REQUIRED)
 
@@ -44,40 +50,6 @@ file(
 )
 
 INCLUDE_DIRECTORIES(${include_files})
-
-#Génération de la liste des fichiers sources
-file(
-	GLOB
-	source_files
-	sources/*.cpp
-)
-
-#Déclaration de l'exécutable
-add_executable(
-	robien
-	${source_files}
-)
-
-
-IF(MINGW)
-  SET(MINGWLIB "mingw32")
-ELSE(MINGW)
-  SET(MINGWLIB )
-ENDIF(MINGW)
-
-
-target_link_libraries(
-	robien
-	${MINGWLIB}
-	${SDL_LIBRARY}
-	${OPENGL_gl_LIBRARY}
-	${OPENGL_glu_LIBRARY}
-	${SDL_LIBRARIES}
-	${SDL_LIBRARIES2}
-	${Boost_LIBRARIES}
-	utils
-	video
-)
 
 
 
