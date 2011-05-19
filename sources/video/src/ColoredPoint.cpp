@@ -27,7 +27,8 @@
 
 #include "../include/ColoredPoint.h"
 
-ColoredPoint::ColoredPoint(Vector3f* position, Color* color) : Point(position), color(color)
+ColoredPoint::ColoredPoint(Vector3f* position, Color* color) :
+    Point(position), color(color)
 {
 
 }

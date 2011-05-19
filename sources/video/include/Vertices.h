@@ -19,21 +19,32 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Color.cpp
+ * 	Name File	: Vertices.h
  *
  *  Created on	: 19 mai 2011
  *      Author	: Romain
  ***************************************/
 
-#include "../include/Color.h"
+#ifndef VERTICES_H_
+#define VERTICES_H_
 
-Color::Color(int red, int green, int blue) :
-    red(red), green(green), blue(blue)
+#include <vector>
+#include "../../utils/include/Referenced.h"
+#include "../include/ColoredPoint.h"
+
+enum TypeVertex
 {
+    POINT, LINE, TRIANGLE, QUAD
+};
 
-}
-
-Color::~Color()
+class Vertices: public std::vector<ColoredPoint>, public Referenced
 {
-}
+public:
+    Vertices(TypeVertex type);
+    virtual ~Vertices();
 
+private:
+    TypeVertex type;
+};
+
+#endif /* VERTICES_H_ */
