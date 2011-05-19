@@ -38,7 +38,7 @@ Vertices::~Vertices()
 
 TypeVertex Vertices::getType()
 {
-	retrun type;
+	return type;
 }
 
 void Vertices::copyVertices(Vertices* src)
