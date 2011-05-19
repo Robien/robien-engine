@@ -28,10 +28,27 @@
 #ifndef MODEL_H_
 #define MODEL_H_
 
-class Model {
+#include <list>
+#include "../../utils/include/Referenced.h"
+#include "../include/Object.h"
+#include "../include/Vertices.h"
+
+class Model: public Referenced
+{
 public:
 	Model();
 	virtual ~Model();
+
+	//creates and returns a new vector point
+	Vertices* getNewVertices(TypeVertex type);
+	//Assigns vertices to the model and overwrites the old
+	void setVertices(Vertices* vert);
+	//creates an object from the vertices of the model, this object is linked to model
+	Object* creatObjet();
+
+private:
+	SmartPtr<Vertices> vertices;
+	std::list<SmartPtr<Object> > linkingObjects;
 };
 
 #endif /* MODEL_H_ */

@@ -43,6 +43,10 @@ public:
     Vertices(TypeVertex type);
     virtual ~Vertices();
 
+    TypeVertex getType();
+    //copy the vertex set parameter in the vertices
+    void copyVertices(Vertices* src);
+
 private:
     TypeVertex type;
 };

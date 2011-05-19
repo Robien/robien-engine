@@ -27,12 +27,33 @@
 
 #include "../include/Object.h"
 
-Object::Object() {
+Object::Object()
+{
 	// TODO Auto-generated constructor stub
 
 }
 
-Object::~Object() {
+Object::~Object()
+{
 	// TODO Auto-generated destructor stub
 }
 
+
+Vertices* Object::getNewVertices(TypeVertex type)
+{
+	return new Vertices(type);
+}
+
+void Object::setVertices(Vertices* vert)
+{
+	vertices = vert;
+}
+
+void drawObject()
+{
+	//TODO
+	/*glBegin(GL_QUADS);
+	glColor3d(1, 0, 0);
+	glVertex3i(1, 1, 1);
+	glEnd();*/
+}

@@ -28,10 +28,25 @@
 #ifndef OBJECT_H_
 #define OBJECT_H_
 
-class Object {
+#include <iostream>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include "../../utils/include/Referenced.h"
+#include "../include/Vertices.h"
+
+class Object: public Referenced
+{
 public:
 	Object();
 	virtual ~Object();
+
+	Vertices* getNewVertices(TypeVertex type);
+	void setVertices(Vertices* vert);
+	void drawObject();
+
+private:
+	SmartPtr<Vertices> vertices;
+
 };
 
 #endif /* OBJECT_H_ */
