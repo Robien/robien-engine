@@ -19,21 +19,20 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Color.cpp
+ * 	Name File	: Vertices.cpp
  *
  *  Created on	: 19 mai 2011
  *      Author	: Romain
  ***************************************/
 
-#include "../include/Color.h"
+#include "../include/Vertices.h"
 
-Color::Color(int red, int green, int blue) :
-    red(red), green(green), blue(blue)
+Vertices::Vertices(TypeVertex type) :
+    type(type)
 {
-
 }
 
-Color::~Color()
+Vertices::~Vertices()
 {
 }
 
