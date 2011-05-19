@@ -27,12 +27,36 @@
 
 #include "../include/Model.h"
 
-Model::Model() {
+Model::Model()
+{
 	// TODO Auto-generated constructor stub
 
 }
 
-Model::~Model() {
+Model::~Model()
+{
 	// TODO Auto-generated destructor stub
 }
 
+//creates and returns a new vector point
+Vertices* Model::getNewVertices(TypeVertex type)
+{
+	return new Vertices(type);
+}
+
+//Assigns vertices to the model
+void Model::setVertices(Vertices* vert)
+{
+	vertices = vert;
+}
+
+//creates an object from the vertices of the model, this object is linked to model
+Object* Model::creatObjet()
+{
+	SmartPtr<Object> newObj = new Object();
+	SmartPtr<Vertices> newVer = newObj->getNewVertices(vertices->getType());
+	newVer->copyVertices(vertices);
+	newObj->setVertices(newVer);
+	linkingObjects.push_back(newObj);
+	return newObj;
+}

@@ -36,3 +36,12 @@ Vertices::~Vertices()
 {
 }
 
+TypeVertex Vertices::getType()
+{
+	retrun type;
+}
+
+void Vertices::copyVertices(Vertices* src)
+{
+	//TODO
+}
