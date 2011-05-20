@@ -49,3 +49,17 @@ Color* ColoredPoint::getColor()
     return color;
 }
 
+int ColoredPoint::getRed()
+{
+    return color->getRed();
+}
+
+int ColoredPoint::getGreen()
+{
+    return color->getGreen();
+}
+
+int ColoredPoint::getBlue()
+{
+    return color->getBlue();
+}

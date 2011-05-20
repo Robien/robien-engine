@@ -34,17 +34,24 @@
 #include "video/include/WindowManager.h"
 #include "video/include/EventManager.h"
 #include "utils/include/SmartPtr.h"
+#include "../../../video/include/Object.h"
+#include "../../../video/include/Vertices.h"
 
 int etape = 0;
 //SDL_Event event;
-void draw_screen(EventManager* E) {
+
+Object* cube();
+
+void draw_screen(EventManager* E)
+{
 	//creation de variable pour le temps
 	double current_time = 0;
 	double last_time = 0;
 	double fps = 0;
 	int n = 0;
-
-	while (1) {
+SmartPtr<Object> cube1 =cube();
+	while (1)
+	{
 		etape = (etape + 1) % 360;
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glMatrixMode(GL_MODELVIEW);
@@ -56,55 +63,58 @@ void draw_screen(EventManager* E) {
 		glRotated(etape, 1, 1, 0);
 		glRotated(etape, 1, 0, 1);
 		glRotated(etape, 1, 0, 3);
-		glBegin(GL_QUADS);
-		glColor3d(1, 0, 0);
-		glVertex3i(1, 1, 1);
-		glColor3d(-1, -9, 0);
-		glColor3d(1, -3, 5);
-		glVertex3i(1, -1, 1);
-		glColor3d(3, 1, -1);
-		glVertex3i(-1, -1, 1);
-		glColor3d(-1, -1, 0);
-		glVertex3i(-1, 1, 1);
-		glColor3d(1, 1, 0);
-		glVertex3i(1, 1, -1);
-		glColor3d(-1, -1, -1);
-		glVertex3i(1, -1, -1);
-		glColor3d(-1, -1, 0);
-		glVertex3i(-1, -1, -1);
-		glColor3d(-1, -1, 0);
-		glVertex3i(-1, 1, -1);
-		glColor3d(1, 0, -1);
-		glVertex3i(1, 1, 1);
-		glColor3d(2, -1, 0);
-		glVertex3i(1, -1, 1);
-		glVertex3i(1, -1, -1);
-		glColor3d(-1, -1, 0);
-		glVertex3i(1, 1, -1);
-		glColor3d(1, 3, 0);
-		glVertex3i(-1, 1, 1);
-		glColor3d(-1, 4, -1);
-		glVertex3i(-1, -1, 1);
-		glColor3d(3, -1, 0);
-		glVertex3i(-1, -1, -1);
-		glColor3d(1, 0, 0);
-		glVertex3i(-1, 1, -1);
-		glColor3d(-1, 0, 6);
-		glVertex3i(-1, 1, -1);
-		glColor3d(-1, 2, -2);
-		glVertex3i(-1, 1, 1);
-		glColor3d(1, -5, 0);
-		glVertex3i(1, 1, 1);
-		glColor3d(-1, -1, 0);
-		glVertex3i(1, 1, -1);
-		glColor3d(-1, -1, 0);
-		glVertex3i(-1, -1, -1);
-		glVertex3i(-1, -1, 1);
-		glColor3d(-3, 2, 0);
-		glVertex3i(1, -1, 1);
-		glColor3d(-1, -2, 3);
-		glVertex3i(1, -1, -1);
-		glEnd();
+		std::cout << "rob1 : " << std::endl;
+		//cube1->drawObject();
+		/*glBegin(GL_QUADS);
+		 glColor3d(1, 0, 0);
+		 glVertex3i(1, 1, 1);
+		 glColor3d(-1, -9, 0);
+		 glColor3d(1, -3, 5);
+		 glVertex3i(1, -1, 1);
+		 glColor3d(3, 1, -1);
+		 glVertex3i(-1, -1, 1);
+		 glColor3d(-1, -1, 0);
+		 glVertex3i(-1, 1, 1);
+		 glColor3d(1, 1, 0);
+		 glVertex3i(1, 1, -1);
+		 glColor3d(-1, -1, -1);
+		 glVertex3i(1, -1, -1);
+		 glColor3d(-1, -1, 0);
+		 glVertex3i(-1, -1, -1);
+		 glColor3d(-1, -1, 0);
+		 glVertex3i(-1, 1, -1);
+		 glColor3d(1, 0, -1);
+		 glVertex3i(1, 1, 1);
+		 glColor3d(2, -1, 0);
+		 glVertex3i(1, -1, 1);
+		 glVertex3i(1, -1, -1);
+		 glColor3d(-1, -1, 0);
+		 glVertex3i(1, 1, -1);
+		 glColor3d(1, 3, 0);
+		 glVertex3i(-1, 1, 1);
+		 glColor3d(-1, 4, -1);
+		 glVertex3i(-1, -1, 1);
+		 glColor3d(3, -1, 0);
+		 glVertex3i(-1, -1, -1);
+		 glColor3d(1, 0, 0);
+		 glVertex3i(-1, 1, -1);
+		 glColor3d(-1, 0, 6);
+		 glVertex3i(-1, 1, -1);
+		 glColor3d(-1, 2, -2);
+		 glVertex3i(-1, 1, 1);
+		 glColor3d(1, -5, 0);
+		 glVertex3i(1, 1, 1);
+		 glColor3d(-1, -1, 0);
+		 glVertex3i(1, 1, -1);
+		 glColor3d(-1, -1, 0);
+		 glVertex3i(-1, -1, -1);
+		 glVertex3i(-1, -1, 1);
+		 glColor3d(-3, 2, 0);
+		 glVertex3i(1, -1, 1);
+		 glColor3d(-1, -2, 3);
+		 glVertex3i(1, -1, -1);
+		 glEnd();*/
+
 		SDL_GL_SwapBuffers();
 		//reduire les fps
 
@@ -112,26 +122,31 @@ void draw_screen(EventManager* E) {
 		//TRUC PAS BEAU pour afficher les fps
 		current_time = SDL_GetTicks() / 1000;
 		n++;
-		if ((current_time - last_time) >= 1.0) {
+		if ((current_time - last_time) >= 1.0)
+		{
 			// nombre de frames par seconde
 			fps = n;
 			n = 0;
 			last_time = current_time;
-			SDL_WM_SetCaption(("fps : " + boost::lexical_cast<std::string>((int) fps)).c_str(),	NULL);
+			SDL_WM_SetCaption(("fps : " + boost::lexical_cast<std::string>((int) fps)).c_str(), NULL);
 
-		} else /* Si ça fait moins de 30ms depuis le dernier tour de boucle, on endort le programme le temps qu'il faut */
+		}
+		else /* Si ça fait moins de 30ms depuis le dernier tour de boucle, on endort le programme le temps qu'il faut */
 		{
 			SDL_Delay(30 - (current_time - last_time));
 		}
 
 		//SDL_PollEvent(&event);
-		if (E->EM_Quit() || E->EM_KeyDown(SDLK_ESCAPE)) {
+		//gestion evenement
+		if (E->EM_Quit() || E->EM_KeyDown(SDLK_ESCAPE))
+		{
 			return;
 		}
 	}
 }
 
-void setup_opengl(int hauteur, int largeur) {
+void setup_opengl(int hauteur, int largeur)
+{
 	float ratio = (float) hauteur / (float) largeur;
 	glClearColor(0, 0, 0, 0);
 	glViewport(0, 0, hauteur, largeur);
@@ -142,7 +157,8 @@ void setup_opengl(int hauteur, int largeur) {
 	glEnable(GL_DEPTH_TEST);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
 	using boost::numeric_cast;
 	int hauteur = 800;
 	int largeur = 600;
@@ -160,3 +176,58 @@ int main(int argc, char **argv) {
 	return 0;
 }
 
+Object* cube()
+{
+	SmartPtr<Object> obj = new Object();
+	SmartPtr<Vertices> vert = obj->getNewVertices(POINT);
+	vert->push_back(new ColoredPoint(new Vector3f(1, 1, 1), new Color(1, 0, 0)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(1, -1, 1), new Color(1, -3, 5)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(-1, -1, 1), new Color(3, 1, -1)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(-1, 1, 1), new Color(-1, -1, 0)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(1, 1, -1), new Color(1, 1, 0)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(1, -1, -1), new Color(-1, -1, -1)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(-1, -1, -1), new Color(-1, -1, 0)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(-1, 1, -1), new Color(-1, -1, 0)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(1, 1, 1), new Color(1, 0, -1)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(1, -1, 1), new Color(2, -1, 0)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(1, -1, -1), new Color(1, 0, 0)));//--
+
+	vert->push_back(new ColoredPoint(new Vector3f(1, 1, -1), new Color(-1, -1, 0)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(-1, 1, 1), new Color(1, 3, 0)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(-1, -1, 1), new Color(-1, 4, -1)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(-1, -1, -1), new Color(3, -1, 0)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(-1, 1, -1), new Color(1, 0, 0)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(-1, 1, -1), new Color(-1, 0, 6)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(-1, 1, 1), new Color(-1, 2, -2)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(1, 1, 1), new Color(1, -5, 0)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(1, 1, -1), new Color(-1, -1, 0)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(-1, -1, -1), new Color(-1, -1, 0)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(1, 1, 1), new Color(1, 0, 0)));//--
+
+	vert->push_back(new ColoredPoint(new Vector3f(1, -1, 1), new Color(-3, 2, 0)));
+
+	vert->push_back(new ColoredPoint(new Vector3f(1, -1, -1), new Color(-1, -2, 3)));
+	obj->setVertices(vert);
+	return obj;
+
+}
