@@ -22,7 +22,7 @@
  * 	Name File	: Model.cpp
  *
  *  Created on	: 17 mai 2011
- *      Author	: céphise
+ *      Author	: cï¿½phise
  ***************************************/
 
 #include "../include/Model.h"
@@ -44,6 +44,12 @@ Vertices* Model::getNewVertices(TypeVertex type)
 	return new Vertices(type);
 }
 
+//getter vertices
+Vertices* Model::getVertices()
+{
+	return vertices;
+}
+
 //Assigns vertices to the model
 void Model::setVertices(Vertices* vert)
 {
@@ -53,8 +59,10 @@ void Model::setVertices(Vertices* vert)
 //creates an object from the vertices of the model, this object is linked to model
 Object* Model::creatObjet()
 {
-	SmartPtr<Object> newObj = new Object();
+	Object* newObj = new Object();
 	SmartPtr<Vertices> newVer = new Vertices(vertices);
+	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
+	//newVer->copyVertices(vertices);
 	newObj->setVertices(newVer);
 	linkingObjects.push_back(newObj);
 	return newObj;

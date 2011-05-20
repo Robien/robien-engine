@@ -22,7 +22,7 @@
  * 	Name File	: Model.h
  *
  *  Created on	: 17 mai 2011
- *      Author	: céphise
+ *      Author	: cï¿½phise
  ***************************************/
 
 #ifndef MODEL_H_
@@ -41,6 +41,8 @@ public:
 
 	//creates and returns a new vector point
 	Vertices* getNewVertices(TypeVertex type);
+	//getter vertices
+	Vertices* getVertices();
 	//Assigns vertices to the model and overwrites the old
 	void setVertices(Vertices* vert);
 	//creates an object from the vertices of the model, this object is linked to model
