@@ -33,7 +33,26 @@ Color::Color(int red, int green, int blue) :
 
 }
 
+Color::Color(Color* color)
+{
+    red = color->getRed();
+    green = color->getGreen();
+    blue = color->getBlue();
+}
+
 Color::~Color()
 {
 }
 
+int Color::getRed()
+{
+    return red;
+}
+int Color::getGreen()
+{
+    return green;
+}
+int Color::getBlue()
+{
+    return blue;
+}

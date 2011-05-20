@@ -27,6 +27,13 @@
 
 #include "../include/Vector3f.h"
 
+Vector3f::Vector3f(Vector3f* vector3f)
+{
+    x = vector3f->x;
+    y = vector3f->y;
+    z = vector3f->z;
+}
+
 Vector3f::Vector3f(float x, float y, float z) :
     x(x), y(y), z(z)
 {

@@ -27,8 +27,14 @@
 
 #include "../include/Point.h"
 
+Point::Point(Point* point)
+{
+    position = new Vector3f(point->getPosition());
+}
+
+
 Point::Point(Vector3f* position) :
-    position(position)
+    position(new Vector3f(position))
 {
 
 }
@@ -41,5 +47,10 @@ Point::Point(float positionX, float positionY, float positionZ) :
 
 Point::~Point()
 {
+}
+
+Vector3f* Point::getPosition()
+{
+    return position;
 }
 

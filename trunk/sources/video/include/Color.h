@@ -33,7 +33,11 @@ class Color: public Referenced
 {
 public:
     Color(int red, int green, int blue);
+    Color(Color* color);
     virtual ~Color();
+    int getRed();
+    int getGreen();
+    int getBlue();
 private:
     int red;
     int green;

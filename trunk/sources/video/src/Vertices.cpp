@@ -43,5 +43,9 @@ TypeVertex Vertices::getType()
 
 void Vertices::copyVertices(Vertices* src)
 {
-	//TODO
+    for ( std::deque<SmartPtr<ColoredPoint> >::iterator i = src->begin(); i < src->end();++i)
+    {
+        push_back(new ColoredPoint(*i));
+    }
+
 }

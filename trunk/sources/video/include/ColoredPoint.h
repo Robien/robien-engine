@@ -35,7 +35,9 @@ class ColoredPoint: public Point
 {
 public:
     ColoredPoint(Vector3f* position, Color* color);
+    ColoredPoint(ColoredPoint* coloredPoint);
     virtual ~ColoredPoint();
+    Color* getColor();
 private:
     SmartPtr<Color> color;
 };
