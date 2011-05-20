@@ -38,6 +38,9 @@ public:
     ColoredPoint(ColoredPoint* coloredPoint);
     virtual ~ColoredPoint();
     Color* getColor();
+    int getRed();
+	int getGreen();
+	int getBlue();
 private:
     SmartPtr<Color> color;
 };

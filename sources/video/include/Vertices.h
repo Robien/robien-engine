@@ -34,12 +34,13 @@
 
 enum TypeVertex
 {
-    POINT, LINE, TRIANGLE, QUAD
+    POINT, LINE, LINE_LOOP, TRIANGLE, QUAD
 };
 
 class Vertices: public std::deque<SmartPtr<ColoredPoint> >, public Referenced
 {
 public:
+    Vertices(Vertices* vert);
     Vertices(TypeVertex type);
     virtual ~Vertices();
 

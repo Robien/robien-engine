@@ -54,8 +54,7 @@ void Model::setVertices(Vertices* vert)
 Object* Model::creatObjet()
 {
 	SmartPtr<Object> newObj = new Object();
-	SmartPtr<Vertices> newVer = newObj->getNewVertices(vertices->getType());
-	newVer->copyVertices(vertices);
+	SmartPtr<Vertices> newVer = new Vertices(vertices);
 	newObj->setVertices(newVer);
 	linkingObjects.push_back(newObj);
 	return newObj;

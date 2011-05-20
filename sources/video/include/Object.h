@@ -43,6 +43,11 @@ public:
 	Vertices* getNewVertices(TypeVertex type);
 	void setVertices(Vertices* vert);
 	void drawObject();
+protected:
+	void drawObjectPoint();
+	void drawObjectLine(bool loop = false);
+	void drawObjectTriangle();
+	void drawObjectQuad();
 
 private:
 	SmartPtr<Vertices> vertices;
