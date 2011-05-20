@@ -22,7 +22,7 @@
  * 	Name File	: Object.h
  *
  *  Created on	: 17 mai 2011
- *      Author	: céphise
+ *      Author	: cï¿½phise
  ***************************************/
 
 #ifndef OBJECT_H_
@@ -41,8 +41,11 @@ public:
 	virtual ~Object();
 
 	Vertices* getNewVertices(TypeVertex type);
+	Vertices* getVertices();
 	void setVertices(Vertices* vert);
+
 	void drawObject();
+
 protected:
 	void drawObjectPoint();
 	void drawObjectLine(bool loop = false);

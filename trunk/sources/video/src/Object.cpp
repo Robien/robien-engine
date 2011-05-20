@@ -22,7 +22,7 @@
  * 	Name File	: Object.cpp
  *
  *  Created on	: 17 mai 2011
- *      Author	: céphise
+ *      Author	: cï¿½phise
  ***************************************/
 
 #include "../include/Object.h"
@@ -42,6 +42,11 @@ Vertices* Object::getNewVertices(TypeVertex type)
 	return new Vertices(type);
 }
 
+Vertices* Object::getVertices()
+{
+	return vertices;
+}
+
 void Object::setVertices(Vertices* vert)
 {
 	vertices = vert;
@@ -49,9 +54,11 @@ void Object::setVertices(Vertices* vert)
 
 void Object::drawObject()
 {
+
 	switch (vertices->getType())
 	{
 	case POINT:
+
 		drawObjectPoint();
 		break;
 	case LINE:
@@ -73,7 +80,7 @@ void Object::drawObject()
 void Object::drawObjectPoint()
 {
 	glBegin(GL_POINTS);
-	for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vertices->begin(); i < vertices->end(); ++i)
+	for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vertices->begin(); i < vertices->end(); i++)
 	{
 		glColor3d((*i)->getRed(), (*i)->getGreen(), (*i)->getBlue());
 		glVertex3i((*i)->getPosition()->x, (*i)->getPosition()->y, (*i)->getPosition()->z);

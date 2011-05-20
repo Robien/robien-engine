@@ -36,6 +36,7 @@
 #include "utils/include/SmartPtr.h"
 #include "../../../video/include/Object.h"
 #include "../../../video/include/Vertices.h"
+#include "../../../video/include/Model.h"
 
 int etape = 0;
 //SDL_Event event;
@@ -49,7 +50,7 @@ void draw_screen(EventManager* E)
 	double last_time = 0;
 	double fps = 0;
 	int n = 0;
-SmartPtr<Object> cube1 =cube();
+	SmartPtr<Object> cube1 = cube();
 	while (1)
 	{
 		etape = (etape + 1) % 360;
@@ -63,8 +64,7 @@ SmartPtr<Object> cube1 =cube();
 		glRotated(etape, 1, 1, 0);
 		glRotated(etape, 1, 0, 1);
 		glRotated(etape, 1, 0, 3);
-		std::cout << "rob1 : " << std::endl;
-		//cube1->drawObject();
+		cube1->drawObject();
 		/*glBegin(GL_QUADS);
 		 glColor3d(1, 0, 0);
 		 glVertex3i(1, 1, 1);
@@ -128,10 +128,12 @@ SmartPtr<Object> cube1 =cube();
 			fps = n;
 			n = 0;
 			last_time = current_time;
-			SDL_WM_SetCaption(("fps : " + boost::lexical_cast<std::string>((int) fps)).c_str(), NULL);
+			SDL_WM_SetCaption(
+					("fps : " + boost::lexical_cast<std::string>((int) fps)).c_str(),
+					NULL);
 
 		}
-		else /* Si �a fait moins de 30ms depuis le dernier tour de boucle, on endort le programme le temps qu'il faut */
+		else /* Si la fait moins de 30ms depuis le dernier tour de boucle, on endort le programme le temps qu'il faut */
 		{
 			SDL_Delay(30 - (current_time - last_time));
 		}
@@ -178,56 +180,86 @@ int main(int argc, char **argv)
 
 Object* cube()
 {
-	SmartPtr<Object> obj = new Object();
-	SmartPtr<Vertices> vert = obj->getNewVertices(POINT);
+	//si avec model
+	Model* mod = new Model();
+	//si sans model
+	Object* obj;//= new Object();
+	SmartPtr<Vertices> vert = obj->getNewVertices(QUAD);
 	vert->push_back(new ColoredPoint(new Vector3f(1, 1, 1), new Color(1, 0, 0)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(1, -1, 1), new Color(1, -3, 5)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(1, -1, 1), new Color(1, -3, 5)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(-1, -1, 1), new Color(3, 1, -1)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(-1, -1, 1), new Color(3, 1, -1)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(-1, 1, 1), new Color(-1, -1, 0)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(-1, 1, 1), new Color(-1, -1, 0)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(1, 1, -1), new Color(1, 1, 0)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(1, 1, -1), new Color(1, 1, 0)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(1, -1, -1), new Color(-1, -1, -1)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(1, -1, -1), new Color(-1, -1, -1)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(-1, -1, -1), new Color(-1, -1, 0)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(-1, -1, -1), new Color(-1, -1, 0)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(-1, 1, -1), new Color(-1, -1, 0)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(-1, 1, -1), new Color(-1, -1, 0)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(1, 1, 1), new Color(1, 0, -1)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(1, 1, 1), new Color(1, 0, -1)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(1, -1, 1), new Color(2, -1, 0)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(1, -1, 1), new Color(2, -1, 0)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(1, -1, -1), new Color(1, 0, 0)));//--
+	vert->push_back(
+			new ColoredPoint(new Vector3f(1, -1, -1), new Color(2, -1, 0)));//--ici on est obligé de remettre la meme couleur
 
-	vert->push_back(new ColoredPoint(new Vector3f(1, 1, -1), new Color(-1, -1, 0)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(1, 1, -1), new Color(-1, -1, 0)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(-1, 1, 1), new Color(1, 3, 0)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(-1, 1, 1), new Color(1, 3, 0)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(-1, -1, 1), new Color(-1, 4, -1)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(-1, -1, 1), new Color(-1, 4, -1)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(-1, -1, -1), new Color(3, -1, 0)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(-1, -1, -1), new Color(3, -1, 0)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(-1, 1, -1), new Color(1, 0, 0)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(-1, 1, -1), new Color(1, 0, 0)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(-1, 1, -1), new Color(-1, 0, 6)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(-1, 1, -1), new Color(-1, 0, 6)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(-1, 1, 1), new Color(-1, 2, -2)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(-1, 1, 1), new Color(-1, 2, -2)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(1, 1, 1), new Color(1, -5, 0)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(1, 1, 1), new Color(1, -5, 0)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(1, 1, -1), new Color(-1, -1, 0)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(1, 1, -1), new Color(-1, -1, 0)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(-1, -1, -1), new Color(-1, -1, 0)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(-1, -1, -1), new Color(-1, -1, 0)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(1, 1, 1), new Color(1, 0, 0)));//--
+	vert->push_back(
+			new ColoredPoint(new Vector3f(-1, -1, 1), new Color(-1, -1, 0)));//--ici on est obligé de remettre la meme couleur
 
-	vert->push_back(new ColoredPoint(new Vector3f(1, -1, 1), new Color(-3, 2, 0)));
+	vert->push_back(
+			new ColoredPoint(new Vector3f(1, -1, 1), new Color(-3, 2, 0)));
 
-	vert->push_back(new ColoredPoint(new Vector3f(1, -1, -1), new Color(-1, -2, 3)));
-	obj->setVertices(vert);
+	vert->push_back(
+			new ColoredPoint(new Vector3f(1, -1, -1), new Color(-1, -2, 3)));
+	//si sans model
+	//	obj->setVertices(vert);
+	//sinon avec model les 2 ligne suivant
+	mod->setVertices(vert);
+	obj = mod->creatObjet();
 	return obj;
 
 }
