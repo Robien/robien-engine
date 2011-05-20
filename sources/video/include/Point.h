@@ -34,10 +34,12 @@
 class Point: public Referenced
 {
 public:
+    Point(Point* point);
     Point(Vector3f* position);
     Point(float positionX, float positionY, float positionZ);
     virtual ~Point();
-private:
+    Vector3f* getPosition();
+protected:
     SmartPtr<Vector3f> position;
 };
 

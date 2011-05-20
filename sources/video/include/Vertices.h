@@ -28,7 +28,7 @@
 #ifndef VERTICES_H_
 #define VERTICES_H_
 
-#include <vector>
+#include <deque>
 #include "../../utils/include/Referenced.h"
 #include "../include/ColoredPoint.h"
 
@@ -37,7 +37,7 @@ enum TypeVertex
     POINT, LINE, TRIANGLE, QUAD
 };
 
-class Vertices: public std::vector<ColoredPoint>, public Referenced
+class Vertices: public std::deque<SmartPtr<ColoredPoint> >, public Referenced
 {
 public:
     Vertices(TypeVertex type);

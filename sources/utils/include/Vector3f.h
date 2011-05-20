@@ -33,6 +33,7 @@ class Vector3f : public Referenced
 {
 public:
     Vector3f(float x, float y, float z);
+    Vector3f(Vector3f* vector3f);
     virtual ~Vector3f();
 public: // tant qu'on a pas redéfini l'oppérateur =
     float x;

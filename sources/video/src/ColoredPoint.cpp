@@ -27,6 +27,13 @@
 
 #include "../include/ColoredPoint.h"
 
+ColoredPoint::ColoredPoint(ColoredPoint* coloredPoint) :
+    Point(coloredPoint->getPosition())
+{
+//    position = new Vector3f(coloredPoint->getPosition());
+    color = new Color(coloredPoint->getColor());
+}
+
 ColoredPoint::ColoredPoint(Vector3f* position, Color* color) :
     Point(position), color(color)
 {
@@ -35,5 +42,10 @@ ColoredPoint::ColoredPoint(Vector3f* position, Color* color) :
 
 ColoredPoint::~ColoredPoint()
 {
+}
+
+Color* ColoredPoint::getColor()
+{
+    return color;
 }
 
