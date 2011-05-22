@@ -136,7 +136,7 @@ void draw_screen(EventManager* E)
         }
         else /* Si la fait moins de 30ms depuis le dernier tour de boucle, on endort le programme le temps qu'il faut */
         {
-            SDL_Delay(30 - (current_time - last_time));
+//            SDL_Delay(30 - (current_time - last_time));
         }
 
         //SDL_PollEvent(&event);
