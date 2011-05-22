@@ -24,14 +24,14 @@ file(
 
 #Déclaration de l'exécutable
 add_executable(
-	testVBO
+	robien
 	${source_files}
 )
 
 
 
 target_link_libraries(
-	testVBO
+	robien
 	${MINGWLIB}
 	${SDL_LIBRARY}
 	${OPENGL_gl_LIBRARY}
