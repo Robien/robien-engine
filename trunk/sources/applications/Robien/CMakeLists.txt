@@ -19,18 +19,19 @@ file(
 	GLOB
 	source_files
 	src/*.cpp
+	src/*.c
 )
 
 #Déclaration de l'exécutable
 add_executable(
-	robien
+	testVBO
 	${source_files}
 )
 
 
 
 target_link_libraries(
-	robien
+	testVBO
 	${MINGWLIB}
 	${SDL_LIBRARY}
 	${OPENGL_gl_LIBRARY}
