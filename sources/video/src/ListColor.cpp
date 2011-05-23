@@ -19,48 +19,33 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: ListColor.cpp
  *
- *  Created on	: 17 mai 2011
- *      Author	: c�phise
+ *  Created on	: 23 mai 2011
+ *      Author	: Romain
  ***************************************/
 
-#include "../include/Model.h"
+#include "../include/ListColor.h"
 
-Model::Model()
+ListColor::ListColor()
 {
 }
 
-Model::~Model()
+ListColor::~ListColor()
 {
 }
 
-//creates and returns a new vector point
-Vertices* Model::getNewVertices(TypeVertex type)
+
+void ListColor::add(Color* color)
 {
-	return new Vertices(type);
+    colors.push_back(color->getRed());
+    colors.push_back(color->getGreen());
+    colors.push_back(color->getBlue());
 }
 
-//getter vertices
-Vertices* Model::getVertices()
+void ListColor::add(float red, float green, float blue)
 {
-	return vertices;
-}
-
-//Assigns vertices to the model
-void Model::setVertices(Vertices* vert)
-{
-	vertices = vert;
-}
-
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
-{
-	Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
+    colors.push_back(red);
+    colors.push_back(green);
+    colors.push_back(blue);
 }

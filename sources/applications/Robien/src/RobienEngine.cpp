@@ -196,7 +196,7 @@ Object* cube()
     Model* mod = new Model();
     //si sans model
     Object* obj;//= new Object();
-    SmartPtr<Vertices> vert = obj->getNewVertices(QUAD);
+    SmartPtr<Vertices> vert = new Vertices(QUAD);
     vert->push_back(new ColoredPoint(new Vector3f(1, 1, 1), new Color(1, 0, 0)));
 
     vert->push_back(new ColoredPoint(new Vector3f(1, -1, 1), new Color(1, -3, 5)));

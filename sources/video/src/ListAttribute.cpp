@@ -19,48 +19,52 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: ListAttribute.cpp
  *
- *  Created on	: 17 mai 2011
- *      Author	: c�phise
+ *  Created on	: 23 mai 2011
+ *      Author	: Romain
  ***************************************/
 
-#include "../include/Model.h"
+#include "../include/ListAttribute.h"
 
-Model::Model()
+ListAttribute::ListAttribute()
 {
 }
 
-Model::~Model()
+ListAttribute::~ListAttribute()
 {
 }
 
-//creates and returns a new vector point
-Vertices* Model::getNewVertices(TypeVertex type)
+void ListAttribute::addIndex(unsigned int num)
 {
-	return new Vertices(type);
+    index.push_back(num);
 }
-
-//getter vertices
-Vertices* Model::getVertices()
+//unsigned int* ListAttribute::getTab()
+//{
+//    return index.get_allocator();
+//}
+void ListAttribute::addIndex(unsigned int* num, int taille)
 {
-	return vertices;
+    for (unsigned int i = 0; i < taille; ++i)
+    {
+        index.push_back(num[i]);
+    }
 }
-
-//Assigns vertices to the model
-void Model::setVertices(Vertices* vert)
+void ListAttribute::addIndex(std::vector<unsigned int> num)
 {
-	vertices = vert;
+    for (unsigned int i = 0; i < num.size(); ++i)
+    {
+        index.push_back(num[i]);
+    }
 }
-
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
+void ListAttribute::setIndex(unsigned int* num, int taille)
 {
-	Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
+    index.clear();
+    addIndex(num, taille);
+
+}
+void ListAttribute::setIndex(std::vector<unsigned int> num)
+{
+    index.clear();
+    addIndex(num);
 }

@@ -28,32 +28,38 @@
 #ifndef OBJECT_H_
 #define OBJECT_H_
 
+#include <vector>
+#include <deque>
 #include <iostream>
+#include "Vertices.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include "../../utils/include/Referenced.h"
-#include "../include/Vertices.h"
+#include "ListAttribute.h"
+#include "../../utils/include/SmartPtr.h"
+
+//enum TypeVertex
+//{
+//    POINT, LINE, LINE_LOOP, TRIANGLE, QUAD
+//};
 
 class Object: public Referenced
 {
 public:
-	Object();
-	virtual ~Object();
-
-	Vertices* getNewVertices(TypeVertex type);
-	Vertices* getVertices();
-	void setVertices(Vertices* vert);
-
-	void drawObject();
+    Object(TypeVertex type);
+    virtual ~Object();
+    void add(ListAttribute* liste);
+    void drawObject();
 
 protected:
-	void drawObjectPoint();
-	void drawObjectLine(bool loop = false);
-	void drawObjectTriangle();
-	void drawObjectQuad();
+    void drawObjectPoint();
+    void drawObjectLine(bool loop = false);
+    void drawObjectTriangle();
+    void drawObjectQuad();
 
 private:
-	SmartPtr<Vertices> vertices;
+    std::vector<SmartPtr<ListAttribute> > attributes;
+    TypeVertex type;
 
 };
 
