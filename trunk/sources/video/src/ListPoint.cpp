@@ -19,48 +19,41 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: ListPoint.cpp
  *
- *  Created on	: 17 mai 2011
- *      Author	: c�phise
+ *  Created on	: 23 mai 2011
+ *      Author	: Romain
  ***************************************/
 
-#include "../include/Model.h"
+#include "../include/ListPoint.h"
 
-Model::Model()
+ListPoint::ListPoint()
 {
 }
 
-Model::~Model()
+ListPoint::~ListPoint()
 {
 }
 
-//creates and returns a new vector point
-Vertices* Model::getNewVertices(TypeVertex type)
+//float* ListPoint::getTab()
+//{
+//    return positions.get_allocator();
+//}
+void ListPoint::add(Point* point)
 {
-	return new Vertices(type);
+    positions.push_back(point->getPosition()->x);
+    positions.push_back(point->getPosition()->y);
+    positions.push_back(point->getPosition()->z);
 }
-
-//getter vertices
-Vertices* Model::getVertices()
+void ListPoint::add(Vector3f* pos)
 {
-	return vertices;
+    positions.push_back(pos->x);
+    positions.push_back(pos->y);
+    positions.push_back(pos->z);
 }
-
-//Assigns vertices to the model
-void Model::setVertices(Vertices* vert)
+void ListPoint::add(float x, float y, float z)
 {
-	vertices = vert;
-}
-
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
-{
-	Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
+    positions.push_back(x);
+    positions.push_back(y);
+    positions.push_back(z);
 }

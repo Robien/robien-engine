@@ -19,48 +19,36 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: ListAttribute.h
  *
- *  Created on	: 17 mai 2011
- *      Author	: c�phise
+ *  Created on	: 23 mai 2011
+ *      Author	: Romain
  ***************************************/
 
-#include "../include/Model.h"
+#ifndef LISTATTRIBUTE_H_
+#define LISTATTRIBUTE_H_
 
-Model::Model()
-{
-}
+#include <vector>
+#include "../../utils/include/Referenced.h"
 
-Model::~Model()
+class ListAttribute: public Referenced
 {
-}
+public:
+    ListAttribute();
+    virtual ~ListAttribute();
+//    unsigned int* getTab();
 
-//creates and returns a new vector point
-Vertices* Model::getNewVertices(TypeVertex type)
-{
-	return new Vertices(type);
-}
 
-//getter vertices
-Vertices* Model::getVertices()
-{
-	return vertices;
-}
+public:
+    void addIndex(unsigned int num);
+    void addIndex(unsigned int* num, int taille);
+    void addIndex(std::vector<unsigned int> num);
+    void setIndex(unsigned int* num, int taille);
+    void setIndex(std::vector<unsigned int> num);
 
-//Assigns vertices to the model
-void Model::setVertices(Vertices* vert)
-{
-	vertices = vert;
-}
 
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
-{
-	Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
-}
+private:
+    std::vector<unsigned int> index;
+};
+
+#endif /* LISTATTRIBUTE_H_ */

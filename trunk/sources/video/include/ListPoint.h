@@ -19,48 +19,32 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: ListPoint.h
  *
- *  Created on	: 17 mai 2011
- *      Author	: c�phise
+ *  Created on	: 23 mai 2011
+ *      Author	: Romain
  ***************************************/
 
-#include "../include/Model.h"
+#ifndef LISTPOINT_H_
+#define LISTPOINT_H_
 
-Model::Model()
-{
-}
+#include <vector>
+#include "ListAttribute.h"
+#include "Point.h"
+#include "../../utils/include/Vector3f.h"
 
-Model::~Model()
+class ListPoint: public ListAttribute
 {
-}
+public:
+    ListPoint();
+    virtual ~ListPoint();
+//    float* getTab();
+    void add(Point* point);//et ne fait pas chier
+    void add(Vector3f* pos);
+    void add(float x, float y, float z);
 
-//creates and returns a new vector point
-Vertices* Model::getNewVertices(TypeVertex type)
-{
-	return new Vertices(type);
-}
+private:
+    std::vector<float> positions;
+};
 
-//getter vertices
-Vertices* Model::getVertices()
-{
-	return vertices;
-}
-
-//Assigns vertices to the model
-void Model::setVertices(Vertices* vert)
-{
-	vertices = vert;
-}
-
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
-{
-	Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
-}
+#endif /* LISTPOINT_H_ */

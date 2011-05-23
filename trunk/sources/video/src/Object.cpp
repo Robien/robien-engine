@@ -26,98 +26,88 @@
  ***************************************/
 
 #include "../include/Object.h"
+#include "../include/ColoredPoint.h"
 
-Object::Object()
+Object::Object(TypeVertex type) :
+    type(type)
 {
-	// TODO Auto-generated constructor stub
 }
 
 Object::~Object()
 {
-	// TODO Auto-generated destructor stub
 }
 
-Vertices* Object::getNewVertices(TypeVertex type)
+void Object::add(ListAttribute* liste)
 {
-	return new Vertices(type);
-}
-
-Vertices* Object::getVertices()
-{
-	return vertices;
-}
-
-void Object::setVertices(Vertices* vert)
-{
-	vertices = vert;
+    attributes.push_back(liste);
 }
 
 void Object::drawObject()
 {
 
-	switch (vertices->getType())
-	{
-	case POINT:
+    switch (type)
+    {
+    case POINT:
 
-		drawObjectPoint();
-		break;
-	case LINE:
-		drawObjectLine();
-		break;
-	case LINE_LOOP:
-		drawObjectLine(true);
-		break;
-	case TRIANGLE:
-		drawObjectTriangle();
-		break;
-	case QUAD:
-		drawObjectQuad();
-		break;
-	}
+        drawObjectPoint();
+        break;
+    case LINE:
+        drawObjectLine();
+        break;
+    case LINE_LOOP:
+        drawObjectLine(true);
+        break;
+    case TRIANGLE:
+        drawObjectTriangle();
+        break;
+    case QUAD:
+        drawObjectQuad();
+        break;
+    }
 
 }
 
 void Object::drawObjectPoint()
 {
-	glBegin(GL_POINTS);
-	for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vertices->begin(); i < vertices->end(); i++)
-	{
-		glColor3d((*i)->getRed(), (*i)->getGreen(), (*i)->getBlue());
-		glVertex3i((*i)->getPosition()->x, (*i)->getPosition()->y, (*i)->getPosition()->z);
-	}
-
-	glEnd();
+//    glBegin(GL_POINTS);
+//    for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vertices->begin(); i < vertices->end(); i++)
+//    {
+//        glColor3d((*i)->getRed(), (*i)->getGreen(), (*i)->getBlue());
+//        glVertex3i((*i)->getPosition()->x, (*i)->getPosition()->y, (*i)->getPosition()->z);
+//    }
+//
+//    glEnd();
 }
 
 void Object::drawObjectLine(bool loop)
 {
-	glBegin(loop ? GL_LINE_STRIP : GL_LINE_LOOP);
-	for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vertices->begin(); i < vertices->end(); ++i)
-	{
-		glColor3d((*i)->getRed(), (*i)->getGreen(), (*i)->getBlue());
-		glVertex3i((*i)->getPosition()->x, (*i)->getPosition()->y, (*i)->getPosition()->z);
-	}
-	glEnd();
+//    glBegin(loop ? GL_LINE_STRIP : GL_LINE_LOOP);
+//    for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vertices->begin(); i < vertices->end(); ++i)
+//    {
+//        glColor3d((*i)->getRed(), (*i)->getGreen(), (*i)->getBlue());
+//        glVertex3i((*i)->getPosition()->x, (*i)->getPosition()->y, (*i)->getPosition()->z);
+//    }
+//    glEnd();
 }
 
 void Object::drawObjectTriangle()
 {
-	glBegin(GL_TRIANGLES);
-	for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vertices->begin(); i < vertices->end(); ++i)
-	{
-		glColor3d((*i)->getRed(), (*i)->getGreen(), (*i)->getBlue());
-		glVertex3i((*i)->getPosition()->x, (*i)->getPosition()->y, (*i)->getPosition()->z);
-	}
-	glEnd();
+//    glBegin(GL_TRIANGLES);
+//    for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vertices->begin(); i < vertices->end(); ++i)
+//    {
+//        glColor3d((*i)->getRed(), (*i)->getGreen(), (*i)->getBlue());
+//        glVertex3i((*i)->getPosition()->x, (*i)->getPosition()->y, (*i)->getPosition()->z);
+//    }
+//    glEnd();
 }
 
 void Object::drawObjectQuad()
 {
-	glBegin(GL_QUADS);
-	for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vertices->begin(); i < vertices->end(); ++i)
-	{
-		glColor3d((*i)->getRed(), (*i)->getGreen(), (*i)->getBlue());
-		glVertex3i((*i)->getPosition()->x, (*i)->getPosition()->y, (*i)->getPosition()->z);
-	}
-	glEnd();
+//    glBegin(GL_QUADS);
+//    for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vertices->begin(); i < vertices->end(); ++i)
+//    {
+//        glColor3d((*i)->getRed(), (*i)->getGreen(), (*i)->getBlue());
+//        glVertex3i((*i)->getPosition()->x, (*i)->getPosition()->y, (*i)->getPosition()->z);
+//    }
+//    glEnd();
 }

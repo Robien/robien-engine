@@ -19,48 +19,28 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: ListColor.h
  *
- *  Created on	: 17 mai 2011
- *      Author	: c�phise
+ *  Created on	: 23 mai 2011
+ *      Author	: Romain
  ***************************************/
 
-#include "../include/Model.h"
+#ifndef LISTCOLOR_H_
+#define LISTCOLOR_H_
 
-Model::Model()
-{
-}
+#include "ListAttribute.h"
+#include "../include/Color.h"
 
-Model::~Model()
+class ListColor: public ListAttribute
 {
-}
+public:
+    ListColor();
+    virtual ~ListColor();
+    void add(Color* color);//et ne fait pas chier
+    void add(float red, float green, float blue);
 
-//creates and returns a new vector point
-Vertices* Model::getNewVertices(TypeVertex type)
-{
-	return new Vertices(type);
-}
+private:
+    std::vector<float> colors;
+};
 
-//getter vertices
-Vertices* Model::getVertices()
-{
-	return vertices;
-}
-
-//Assigns vertices to the model
-void Model::setVertices(Vertices* vert)
-{
-	vertices = vert;
-}
-
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
-{
-	Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
-}
+#endif /* LISTCOLOR_H_ */
