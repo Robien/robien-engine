@@ -35,36 +35,7 @@ ListAttribute::~ListAttribute()
 {
 }
 
-void ListAttribute::addIndex(unsigned int num)
+TypeAttribute ListAttribute::getTypeAttribute()
 {
-    index.push_back(num);
-}
-//unsigned int* ListAttribute::getTab()
-//{
-//    return index.get_allocator();
-//}
-void ListAttribute::addIndex(unsigned int* num, int taille)
-{
-    for (unsigned int i = 0; i < taille; ++i)
-    {
-        index.push_back(num[i]);
-    }
-}
-void ListAttribute::addIndex(std::vector<unsigned int> num)
-{
-    for (unsigned int i = 0; i < num.size(); ++i)
-    {
-        index.push_back(num[i]);
-    }
-}
-void ListAttribute::setIndex(unsigned int* num, int taille)
-{
-    index.clear();
-    addIndex(num, taille);
-
-}
-void ListAttribute::setIndex(std::vector<unsigned int> num)
-{
-    index.clear();
-    addIndex(num);
+	return typeAttribute;
 }

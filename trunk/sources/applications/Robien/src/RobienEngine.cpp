@@ -39,6 +39,7 @@
 #include "../../../video/include/Model.h"
 #include "../../../utils/include/Matrix4f.h"
 #include "../../../utils/include/SmartPtr.h"
+#include "../../../video/include/ImporterOBJ.h"
 
 int etape = 0;
 //SDL_Event event;
@@ -52,7 +53,9 @@ void draw_screen(EventManager* E)
     double last_time = 0;
     double fps = 0;
     int n = 0;
-    SmartPtr<Object> cube1 = cube();
+    SmartPtr<Object> cube1 = new Object();
+   	bool charge = ImporterOBJ::parse(cube1, "..//data/cube.obj");
+
     while (1)
     {
         etape = (etape + 1) % 360;
@@ -66,8 +69,9 @@ void draw_screen(EventManager* E)
         glRotated(etape, 1, 1, 0);
         glRotated(etape, 1, 0, 1);
         glRotated(etape, 1, 0, 3);
-        cube1->drawObject();
-        /*glBegin(GL_QUADS);
+        if(charge)  cube1->drawObject();
+        else
+         {glBegin(GL_QUADS);
          glColor3d(1, 0, 0);
          glVertex3i(1, 1, 1);
          glColor3d(-1, -9, 0);
@@ -115,7 +119,8 @@ void draw_screen(EventManager* E)
          glVertex3i(1, -1, 1);
          glColor3d(-1, -2, 3);
          glVertex3i(1, -1, -1);
-         glEnd();*/
+         glEnd();
+         }
 
         SDL_GL_SwapBuffers();
         //reduire les fps
@@ -171,7 +176,7 @@ int main(int argc, char **argv)
     short s = numeric_cast<short> (num);
     SmartPtr<Matrix4f> id24 = new Matrix4f(1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1.);
     SmartPtr<Matrix4f> mat24 = new Matrix4f(1., 7., 0., 3., 0., 5., 8., 0., 8., 0., 5., 6., 6., 0., 9., 1.);
-//    SmartPtr<Matrix4f> res24 = mat24 * id24;
+   // SmartPtr<Matrix4f> res24 = mat24 * id24;
     for (int i = 0; i < 4; ++i)
     {
         for (int j = 0; j < 4; ++j)
@@ -189,14 +194,14 @@ int main(int argc, char **argv)
     draw_screen(E);
     return 0;
 }
-
+/*
 Object* cube()
 {
     //si avec model
     Model* mod = new Model();
     //si sans model
     Object* obj;//= new Object();
-    SmartPtr<Vertices> vert = new Vertices(QUAD);
+    SmartPtr<Vertices> vert = new Vertices();
     vert->push_back(new ColoredPoint(new Vector3f(1, 1, 1), new Color(1, 0, 0)));
 
     vert->push_back(new ColoredPoint(new Vector3f(1, -1, 1), new Color(1, -3, 5)));
@@ -247,8 +252,8 @@ Object* cube()
     //si sans model
     //	obj->setVertices(vert);
     //sinon avec model les 2 ligne suivant
-    mod->setVertices(vert);
-    obj = mod->creatObjet();
+   // mod->setVertices(vert);
+   obj = mod->creatObjet();
     return obj;
 
-}
+}*/

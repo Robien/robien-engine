@@ -32,24 +32,25 @@
 #include "../../utils/include/Referenced.h"
 #include "../include/ColoredPoint.h"
 
-enum TypeVertex
+/*enum TypeVertex
 {
     POINT, LINE, LINE_LOOP, TRIANGLE, QUAD
-};
+};*/
 
 class Vertices: public std::deque<SmartPtr<ColoredPoint> >, public Referenced
 {
 public:
     Vertices(Vertices* vert);
-    Vertices(TypeVertex type);
+    Vertices();
+    //Vertices(TypeVertex type);
     virtual ~Vertices();
 
-    TypeVertex getType();
+    //TypeVertex getType();
     //copy the vertex set parameter in the vertices
     void copyVertices(Vertices* src);
 
 private:
-    TypeVertex type;
+    //TypeVertex type;
 };
 
 #endif /* VERTICES_H_ */

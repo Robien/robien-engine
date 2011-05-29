@@ -22,7 +22,7 @@
  * 	Name File	: Object.h
  *
  *  Created on	: 17 mai 2011
- *      Author	: cï¿½phise
+ *      Author	: céphise
  ***************************************/
 
 #ifndef OBJECT_H_
@@ -31,35 +31,39 @@
 #include <vector>
 #include <deque>
 #include <iostream>
-#include "Vertices.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include "../../utils/include/Referenced.h"
-#include "ListAttribute.h"
+#include "../include/ListAttribute.h"
+#include "../include/ListPoint.h"
+#include "../include/ListFace.h"
 #include "../../utils/include/SmartPtr.h"
 
-//enum TypeVertex
-//{
-//    POINT, LINE, LINE_LOOP, TRIANGLE, QUAD
-//};
+
 
 class Object: public Referenced
 {
 public:
-    Object(TypeVertex type);
+    Object();
     virtual ~Object();
     void add(ListAttribute* liste);
     void drawObject();
+    std::vector<SmartPtr<ListAttribute> >* GetAttributes();
+    bool hasTextureVertices();
+    bool hasVertexNormals();
+    void setPath(std::string file);
+    std::string getPath();
 
 protected:
-    void drawObjectPoint();
-    void drawObjectLine(bool loop = false);
-    void drawObjectTriangle();
-    void drawObjectQuad();
+    void drawObjectVA();
+    void drawObjectVBO();
+
 
 private:
+
+    std::string path;
     std::vector<SmartPtr<ListAttribute> > attributes;
-    TypeVertex type;
+
 
 };
 

@@ -19,38 +19,36 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: ImporterOBJ.h
  *
- *  Created on	: 17 mai 2011
- *      Author	: cï¿½phise
+ *  Created on	: 23 mai 2011
+ *      Author	: céphise
  ***************************************/
 
-#include "../include/Model.h"
+#ifndef IMPORTEROBJ_H_
+#define IMPORTEROBJ_H_
 
-Model::Model()
+#include <fstream>
+#include "../include/ImporterMTL.h"
+#include "../include/Object.h"
+#include "../../utils/include/Referenced.h"
+#include "../include/ListFace.h"
+#include "../include/ListPoint.h"
+#include "../include/ListTextureVertices.h"
+#include "../include/ListVertexNormals.h"
+
+class ImporterOBJ: public Referenced
 {
-}
+public:
+	ImporterOBJ();
+	virtual ~ImporterOBJ();
 
-Model::~Model()
-{
-}
+	static bool parse(Object* objet, const std::string& strFileName);
+private:
+	static bool	processLine(Object* objet, std::istream& is);
+	static void	parseMtlFile(Object* objet, const std::string& strFileName);
+	static void	skipLine(std::istream& is);
+	static bool	skipCommentLine(std::istream& is);
+};
 
-
-void Model::add(ListAttribute* liste)
-{
-    attributes.push_back(liste);
-}
-
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
-{
-	/*Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
-*/
-	return NULL;
-}
+#endif /* IMPORTEROBJ_H_ */

@@ -22,7 +22,7 @@
  * 	Name File	: Model.h
  *
  *  Created on	: 17 mai 2011
- *      Author	: cï¿½phise
+ *      Author	: céphise
  ***************************************/
 
 #ifndef MODEL_H_
@@ -39,18 +39,15 @@ public:
 	Model();
 	virtual ~Model();
 
-	//creates and returns a new vector point
-	Vertices* getNewVertices(TypeVertex type);
-	//getter vertices
-	Vertices* getVertices();
-	//Assigns vertices to the model and overwrites the old
-	void setVertices(Vertices* vert);
-	//creates an object from the vertices of the model, this object is linked to model
+	//Assigns new list attribute to the model
+	void add(ListAttribute* liste);
+	//creates an object from the attributes of the model, this object is linked to model
 	Object* creatObjet();
 
 private:
-	SmartPtr<Vertices> vertices;
 	std::list<SmartPtr<Object> > linkingObjects;
+	std::vector<SmartPtr<ListAttribute> > attributes;
+	TypeVertex type;
 };
 
 #endif /* MODEL_H_ */

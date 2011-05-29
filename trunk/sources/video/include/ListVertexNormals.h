@@ -19,38 +19,25 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: ListVertexNormals.h
  *
- *  Created on	: 17 mai 2011
- *      Author	: cï¿½phise
+ *  Created on	: 24 mai 2011
+ *      Author	: céphise
  ***************************************/
 
-#include "../include/Model.h"
+#ifndef LISTVERTEXNORMALS_H_
+#define LISTVERTEXNORMALS_H_
 
-Model::Model()
+#include "ListAttribute.h"
+
+class ListVertexNormals: public ListAttribute
 {
-}
+public:
+	ListVertexNormals();
+	virtual ~ListVertexNormals();
+	void add(float x, float y, float z);
+private:
+    std::vector<float> positions;
+};
 
-Model::~Model()
-{
-}
-
-
-void Model::add(ListAttribute* liste)
-{
-    attributes.push_back(liste);
-}
-
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
-{
-	/*Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
-*/
-	return NULL;
-}
+#endif /* LISTVERTEXNORMALS_H_ */

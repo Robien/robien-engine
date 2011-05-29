@@ -29,28 +29,38 @@
 
 ListPoint::ListPoint()
 {
+	typeAttribute = VERTICES;
 }
 
 ListPoint::~ListPoint()
 {
 }
 
-//float* ListPoint::getTab()
-//{
-//    return positions.get_allocator();
-//}
+float* ListPoint::getTab(int& size)
+{
+	size = positions.size();
+	float* tab = new float[size];
+	for(int i = 0; i< size; ++i)
+	{
+		tab[i] = positions[i];
+	}
+    return tab;
+}
+
 void ListPoint::add(Point* point)
 {
     positions.push_back(point->getPosition()->x);
     positions.push_back(point->getPosition()->y);
     positions.push_back(point->getPosition()->z);
 }
+
 void ListPoint::add(Vector3f* pos)
 {
     positions.push_back(pos->x);
     positions.push_back(pos->y);
     positions.push_back(pos->z);
 }
+
 void ListPoint::add(float x, float y, float z)
 {
     positions.push_back(x);

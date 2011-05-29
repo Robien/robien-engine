@@ -19,38 +19,62 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: Material.cpp
  *
- *  Created on	: 17 mai 2011
- *      Author	: cï¿½phise
+ *  Created on	: 29 mai 2011
+ *      Author	: céphise
  ***************************************/
 
-#include "../include/Model.h"
+#include "../include/Material.h"
 
-Model::Model()
+Material::Material()
+{
+	// TODO Auto-generated constructor stub
+
+}
+
+Material::Material(std::string nameMat): name(nameMat)
 {
 }
 
-Model::~Model()
+Material::~Material()
 {
 }
 
-
-void Model::add(ListAttribute* liste)
+void Material::setDiffuseTexture(std::string path)
 {
-    attributes.push_back(liste);
+	diffuseTexture = path;
 }
 
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
+/*void Material::setAmbient(float x,float y,float z)
 {
-	/*Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
-*/
-	return NULL;
+	ambient->x = x;
+	ambient->y = y;
+	ambient->z = z;
+}*/
+
+void Material::setDiffuse(float x,float y,float z)
+{
+	diffuse->x = x;
+	diffuse->y = y;
+	diffuse->z = z;
+
+}
+
+/*void Material::setSpecular(float x,float y,float z)
+{
+	specular->x = x;
+	specular->y = y;
+	specular->z = z;
+}*/
+
+/*void Material::setSpecularCoeff(float speculcoef)
+{
+	specularCoeff = speculcoef;
+}*/
+
+
+void Material::setTransparency(float trans)
+{
+ transparency= trans;
 }

@@ -19,38 +19,29 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: ListMaterial.h
  *
- *  Created on	: 17 mai 2011
- *      Author	: cï¿½phise
+ *  Created on	: 29 mai 2011
+ *      Author	: céphise
  ***************************************/
 
-#include "../include/Model.h"
+#ifndef LISTMATERIAL_H_
+#define LISTMATERIAL_H_
 
-Model::Model()
+#include "../../utils/include/SmartPtr.h"
+#include "ListAttribute.h"
+#include "Material.h"
+
+class ListMaterial: public ListAttribute
 {
-}
+public:
+	ListMaterial();
+	virtual ~ListMaterial();
+	void add(Material* mat);
+	std::vector<SmartPtr<Material> > getMaterials();
 
-Model::~Model()
-{
-}
+private:
+	std::vector<SmartPtr<Material> > materials;
+};
 
-
-void Model::add(ListAttribute* liste)
-{
-    attributes.push_back(liste);
-}
-
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
-{
-	/*Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
-*/
-	return NULL;
-}
+#endif /* LISTMATERIAL_H_ */

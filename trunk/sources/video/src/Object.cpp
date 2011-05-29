@@ -22,14 +22,13 @@
  * 	Name File	: Object.cpp
  *
  *  Created on	: 17 mai 2011
- *      Author	: cï¿½phise
+ *      Author	: céphise
  ***************************************/
 
 #include "../include/Object.h"
 #include "../include/ColoredPoint.h"
 
-Object::Object(TypeVertex type) :
-    type(type)
+Object::Object()
 {
 }
 
@@ -39,75 +38,94 @@ Object::~Object()
 
 void Object::add(ListAttribute* liste)
 {
-    attributes.push_back(liste);
+	attributes.push_back(liste);
 }
 
 void Object::drawObject()
 {
-
-    switch (type)
-    {
-    case POINT:
-
-        drawObjectPoint();
-        break;
-    case LINE:
-        drawObjectLine();
-        break;
-    case LINE_LOOP:
-        drawObjectLine(true);
-        break;
-    case TRIANGLE:
-        drawObjectTriangle();
-        break;
-    case QUAD:
-        drawObjectQuad();
-        break;
-    }
+	drawObjectVA();
 
 }
 
-void Object::drawObjectPoint()
+void Object::drawObjectVA()
 {
-//    glBegin(GL_POINTS);
-//    for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vertices->begin(); i < vertices->end(); i++)
-//    {
-//        glColor3d((*i)->getRed(), (*i)->getGreen(), (*i)->getBlue());
-//        glVertex3i((*i)->getPosition()->x, (*i)->getPosition()->y, (*i)->getPosition()->z);
-//    }
-//
-//    glEnd();
+	glEnableClientState(GL_VERTEX_ARRAY);
+
+	std::vector<SmartPtr<ListAttribute> >::iterator it;
+	for (it = attributes.begin(); it < attributes.end(); ++it)
+	{
+		if ((*it)->getTypeAttribute() == VERTICES)
+			break;
+	}
+	int size;
+	float* tab = ((ListPoint*) &(*(*it)))->getTab(size);
+	glVertexPointer(3, GL_FLOAT, 0, tab);
+
+	int sizeind;
+	for (it = attributes.begin(); it < attributes.end(); ++it)
+	{
+		if ((*it)->getTypeAttribute() == FACE)
+		{
+			unsigned int* index = ((ListFace*) &(*(*it)))->getTabIndex(sizeind);
+			glDrawElements(((ListFace*) &(*(*it)))->getType(), sizeind, GL_UNSIGNED_INT, index);
+		}
+
+	}
+	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-void Object::drawObjectLine(bool loop)
+void Object::drawObjectVBO()
 {
-//    glBegin(loop ? GL_LINE_STRIP : GL_LINE_LOOP);
-//    for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vertices->begin(); i < vertices->end(); ++i)
-//    {
-//        glColor3d((*i)->getRed(), (*i)->getGreen(), (*i)->getBlue());
-//        glVertex3i((*i)->getPosition()->x, (*i)->getPosition()->y, (*i)->getPosition()->z);
-//    }
-//    glEnd();
+
 }
 
-void Object::drawObjectTriangle()
+std::vector<SmartPtr<ListAttribute> >* Object::GetAttributes()
 {
-//    glBegin(GL_TRIANGLES);
-//    for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vertices->begin(); i < vertices->end(); ++i)
-//    {
-//        glColor3d((*i)->getRed(), (*i)->getGreen(), (*i)->getBlue());
-//        glVertex3i((*i)->getPosition()->x, (*i)->getPosition()->y, (*i)->getPosition()->z);
-//    }
-//    glEnd();
+	return &attributes;
 }
 
-void Object::drawObjectQuad()
+bool Object::hasTextureVertices()
 {
-//    glBegin(GL_QUADS);
-//    for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vertices->begin(); i < vertices->end(); ++i)
-//    {
-//        glColor3d((*i)->getRed(), (*i)->getGreen(), (*i)->getBlue());
-//        glVertex3i((*i)->getPosition()->x, (*i)->getPosition()->y, (*i)->getPosition()->z);
-//    }
-//    glEnd();
+	std::vector<SmartPtr<ListAttribute> >::iterator it;
+	for (it = attributes.begin(); it < attributes.end(); ++it)
+	{
+		if ((*it)->getTypeAttribute() == TEXTURE_VERTICES)
+			return true;
+	}
+	return false;
 }
+
+bool Object::hasVertexNormals()
+{
+	std::vector<SmartPtr<ListAttribute> >::iterator it;
+	for (it = attributes.begin(); it < attributes.end(); ++it)
+	{
+		if ((*it)->getTypeAttribute() == VERTEX_NORMALS)
+			return true;
+	}
+	return false;
+}
+
+void Object::setPath(std::string file)
+{
+	std::string s1 = "", s2 = "";
+	for (unsigned int i = 0; i < file.size(); i++)
+	{
+		if (file[i] == '/' || file[i] == '\\')
+		{
+			s1 += s2 + "/";
+			s2 = "";
+		}
+		else
+			s2 += file[i];
+	}
+	path = s1;
+
+}
+std::string Object::getPath()
+{
+	return path;
+}
+
+
+
