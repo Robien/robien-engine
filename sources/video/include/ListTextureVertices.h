@@ -19,38 +19,25 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: ListTextureVertices.h
  *
- *  Created on	: 17 mai 2011
- *      Author	: cï¿½phise
+ *  Created on	: 24 mai 2011
+ *      Author	: céphise
  ***************************************/
 
-#include "../include/Model.h"
+#ifndef LISTTEXTUREVERTICES_H_
+#define LISTTEXTUREVERTICES_H_
 
-Model::Model()
+#include "ListAttribute.h"
+
+class ListTextureVertices: public ListAttribute
 {
-}
+public:
+	ListTextureVertices();
+	virtual ~ListTextureVertices();
+	void add(float x, float y);
+private :
+    std::vector<float> positions;
+};
 
-Model::~Model()
-{
-}
-
-
-void Model::add(ListAttribute* liste)
-{
-    attributes.push_back(liste);
-}
-
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
-{
-	/*Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
-*/
-	return NULL;
-}
+#endif /* LISTTEXTUREVERTICES_H_ */

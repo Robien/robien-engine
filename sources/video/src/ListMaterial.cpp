@@ -19,38 +19,30 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: ListMaterial.cpp
  *
- *  Created on	: 17 mai 2011
- *      Author	: cï¿½phise
+ *  Created on	: 29 mai 2011
+ *      Author	: céphise
  ***************************************/
 
-#include "../include/Model.h"
+#include "../include/ListMaterial.h"
 
-Model::Model()
+ListMaterial::ListMaterial()
 {
+	typeAttribute = MATERIAL;
 }
 
-Model::~Model()
+ListMaterial::~ListMaterial()
 {
+	// TODO Auto-generated destructor stub
 }
 
-
-void Model::add(ListAttribute* liste)
+void ListMaterial::add(Material* mat)
 {
-    attributes.push_back(liste);
+	materials.push_back(mat);
 }
 
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
+std::vector<SmartPtr<Material> > ListMaterial::getMaterials()
 {
-	/*Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
-*/
-	return NULL;
+	return materials;
 }

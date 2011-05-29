@@ -19,38 +19,43 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: Material.h
  *
- *  Created on	: 17 mai 2011
- *      Author	: cï¿½phise
+ *  Created on	: 29 mai 2011
+ *      Author	: céphise
  ***************************************/
 
-#include "../include/Model.h"
+#ifndef MATERIAL_H_
+#define MATERIAL_H_
 
-Model::Model()
+#include "../../utils/include/Referenced.h"
+#include "../../utils/include/Vector3f.h"
+#include "../../utils/include/SmartPtr.h"
+
+class Material: public Referenced
 {
-}
+public:
+	Material();
+	Material(std::string nameMat);
+	virtual ~Material();
 
-Model::~Model()
-{
-}
+	void setDiffuseTexture(std::string path);
+	//void setAmbient(float x,float y,float z);
+	void setDiffuse(float x,float y,float z);
+	//void setSpecular(float x,float y,float z);
+	//void setSpecularCoeff(float speculcoef);
+	void setTransparency(float trans);
 
+private:
+	 std::string name;
+	 std::string diffuseTexture;
+	 SmartPtr<Vector3f> ambient;
+	 SmartPtr<Vector3f> diffuse;
 
-void Model::add(ListAttribute* liste)
-{
-    attributes.push_back(liste);
-}
+	 //SmartPtr<Vector3f> specular;
+	 //float specularCoeff;
+	 float transparency;
 
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
-{
-	/*Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
-*/
-	return NULL;
-}
+};
+
+#endif /* MATERIAL_H_ */

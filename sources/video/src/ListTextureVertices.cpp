@@ -19,38 +19,28 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: ListTextureVertices.cpp
  *
- *  Created on	: 17 mai 2011
- *      Author	: cï¿½phise
+ *  Created on	: 24 mai 2011
+ *      Author	: céphise
  ***************************************/
 
-#include "../include/Model.h"
+#include "../include/ListTextureVertices.h"
 
-Model::Model()
+ListTextureVertices::ListTextureVertices()
 {
+	typeAttribute = TEXTURE_VERTICES;
+
 }
 
-Model::~Model()
+void ListTextureVertices::add(float x, float y)
 {
+	positions.push_back(x);
+	positions.push_back(y);
 }
 
-
-void Model::add(ListAttribute* liste)
+ListTextureVertices::~ListTextureVertices()
 {
-    attributes.push_back(liste);
+	// TODO Auto-generated destructor stub
 }
 
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
-{
-	/*Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
-*/
-	return NULL;
-}

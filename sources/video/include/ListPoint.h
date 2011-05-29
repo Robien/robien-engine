@@ -28,17 +28,18 @@
 #ifndef LISTPOINT_H_
 #define LISTPOINT_H_
 
-#include <vector>
 #include "ListAttribute.h"
 #include "Point.h"
 #include "../../utils/include/Vector3f.h"
+
+
 
 class ListPoint: public ListAttribute
 {
 public:
     ListPoint();
     virtual ~ListPoint();
-//    float* getTab();
+    float* getTab(int& size);
     void add(Point* point);//et ne fait pas chier
     void add(Vector3f* pos);
     void add(float x, float y, float z);

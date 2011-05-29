@@ -29,30 +29,32 @@
 
 Vertices::Vertices(Vertices* vert)
 {
-	type = vert->getType();
+	//type = vert->getType();
 	for (std::deque<SmartPtr<ColoredPoint> >::iterator i = vert->begin(); i < vert->end(); ++i)
 	{
 		push_back(new ColoredPoint(*i));
 	}
 }
 
-Vertices::Vertices(TypeVertex type) :
+/*Vertices::Vertices(TypeVertex type) :
 	type(type)
 {
+}*/
+Vertices::Vertices()
+{
 }
-
 Vertices::~Vertices()
 {
 }
 
-TypeVertex Vertices::getType()
+/*TypeVertex Vertices::getType()
 {
 	return type;
-}
+}*/
 
 void Vertices::copyVertices(Vertices* src)
 {
-	type = src->getType();
+	//type = src->getType();
 	for (std::deque<SmartPtr<ColoredPoint> >::iterator i = src->begin(); i < src->end(); ++i)
 	{
 		push_back(new ColoredPoint(*i));

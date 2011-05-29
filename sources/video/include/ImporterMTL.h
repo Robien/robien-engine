@@ -19,38 +19,33 @@
  */
 /****************************************
  *	Project		: RobienEngine
- * 	Name File	: Model.cpp
+ * 	Name File	: ImporterMTL.h
  *
- *  Created on	: 17 mai 2011
- *      Author	: cï¿½phise
+ *  Created on	: 24 mai 2011
+ *      Author	: céphise
  ***************************************/
 
-#include "../include/Model.h"
+#ifndef IMPORTERMTL_H_
+#define IMPORTERMTL_H_
 
-Model::Model()
+#include <fstream>
+#include "../include/Object.h"
+#include "../../utils/include/Referenced.h"
+#include "../include/ListMaterial.h"
+#include "../include/Material.h"
+
+
+
+class ImporterMTL: public Referenced
 {
-}
+public:
+	ImporterMTL();
+	virtual ~ImporterMTL();
+	static void parse(Object* objet, const std::string& strFileName);
+private:
+	static bool	processLine(Object* objet, Material* mat, std::istream& is);
+	static void	skipLine(std::istream& is);
+	static bool	skipCommentLine(std::istream& is);
+};
 
-Model::~Model()
-{
-}
-
-
-void Model::add(ListAttribute* liste)
-{
-    attributes.push_back(liste);
-}
-
-//creates an object from the vertices of the model, this object is linked to model
-Object* Model::creatObjet()
-{
-	/*Object* newObj = new Object(vertices->getType());
-	SmartPtr<Vertices> newVer = new Vertices(vertices);
-	//SmartPtr<Vertices> newVer = new Vertices(vertices->getType());
-	//newVer->copyVertices(vertices);
-	//newObj->setVertices(newVer);
-	linkingObjects.push_back(newObj);
-	return newObj;
-*/
-	return NULL;
-}
+#endif /* IMPORTERMTL_H_ */

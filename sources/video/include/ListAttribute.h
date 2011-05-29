@@ -31,24 +31,26 @@
 #include <vector>
 #include "../../utils/include/Referenced.h"
 
+enum TypeVertex
+{
+    POINT =0, LINE = 1, LINE_LOOP = 2, TRIANGLE = 4, QUAD = 7, POLYGON = 9
+};
+enum TypeAttribute
+{
+    VERTICES, FACE, TEXTURE_VERTICES, VERTEX_NORMALS, COLOR, MATERIAL
+};
+
 class ListAttribute: public Referenced
 {
 public:
     ListAttribute();
     virtual ~ListAttribute();
-//    unsigned int* getTab();
 
+    virtual TypeAttribute getTypeAttribute();
 
-public:
-    void addIndex(unsigned int num);
-    void addIndex(unsigned int* num, int taille);
-    void addIndex(std::vector<unsigned int> num);
-    void setIndex(unsigned int* num, int taille);
-    void setIndex(std::vector<unsigned int> num);
+protected:
+    TypeAttribute typeAttribute;
 
-
-private:
-    std::vector<unsigned int> index;
 };
 
 #endif /* LISTATTRIBUTE_H_ */
