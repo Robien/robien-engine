@@ -54,8 +54,10 @@ void draw_screen(EventManager* E)
     double fps = 0;
     int n = 0;
     SmartPtr<Object> cube1 = new Object();
-   	bool charge = ImporterOBJ::parse(cube1, "..//data/cube.obj");
 
+    	bool charge = ImporterOBJ::parse(cube1, "data/cube.obj");
+    	/*Pour linux*///bool charge = ImporterOBJ::parse(cube1, "../data/cube.obj");
+		cube1->initialize();
     while (1)
     {
         etape = (etape + 1) % 360;

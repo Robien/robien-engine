@@ -30,10 +30,11 @@
 
 #include <vector>
 #include "../../utils/include/Referenced.h"
+#include <GL/gl.h>
 
 enum TypeVertex
 {
-    POINT =0, LINE = 1, LINE_LOOP = 2, TRIANGLE = 4, QUAD = 7, POLYGON = 9
+    POINT = GL_POINTS, LINE = GL_LINES, LINE_LOOP = GL_LINE_LOOP, TRIANGLE = GL_TRIANGLES, QUAD = GL_QUADS, POLYGON = GL_POLYGON
 };
 enum TypeAttribute
 {

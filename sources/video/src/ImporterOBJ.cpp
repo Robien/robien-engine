@@ -45,7 +45,8 @@ bool ImporterOBJ::parse(Object* objet, const std::string& pathFileName)
 	//Ouverture du fichier, et positionnement a la fin
 	std::ifstream ifs(pathFileName.c_str(), std::ios::in | std::ios::ate);
 	if (!ifs)
-	{return false;
+	{
+		return false;
 	}//TODO throw(Exception); //ca n'a pas marché
 
 	//recupere la taille du fichier
@@ -54,11 +55,11 @@ bool ImporterOBJ::parse(Object* objet, const std::string& pathFileName)
 	ifs.seekg(0, std::ios::beg);
 
 	if (0 == fileSize)
-	{return false;
+	{
+		return false;
 	}//TODO throw Exception
 
 	objet->setPath(pathFileName);
-
 
 	//commence l'analyse du fichier
 	int percent = 10; //	indicateur de progression
@@ -83,6 +84,7 @@ bool ImporterOBJ::parse(Object* objet, const std::string& pathFileName)
 
 bool ImporterOBJ::processLine(Object* objet, std::istream& is)
 {
+	std::cout << "processLine" <<std::endl;
 	std::string ele_id;
 	float x, y, z;
 
@@ -124,11 +126,13 @@ bool ImporterOBJ::processLine(Object* objet, std::istream& is)
 			rit = att->rbegin();
 		}
 		is >> x >> y >> z;
-		((ListPoint*)&(*(*rit)))->add(x,y,z);
+
+		((ListPoint*) &(*(*rit)))->add(x, y, z);
 		//pMesh->addVertex(SVertex(x, y, z));
 	}
 	else if ("vt" == ele_id) //coordonnée de texture
 	{
+		/*TODO debug
 		std::vector<SmartPtr<ListAttribute> >* att = objet->GetAttributes();
 		std::vector<SmartPtr<ListAttribute> >::reverse_iterator rit;
 		for (rit = att->rbegin(); rit < att->rend(); ++rit)
@@ -144,11 +148,14 @@ bool ImporterOBJ::processLine(Object* objet, std::istream& is)
 		}
 		is >> x >> y >> z;
 		is.clear(); // is z (i.e. w) is not available, have to clear error flag.
-		((ListTextureVertices*)&(*(*rit)))->add(x,y);
+		((ListTextureVertices*) &(*(*rit)))->add(x, y);
 		//pMesh->addTextureCoord(SVertex(x, y, z));
+		 */
 	}
 	else if ("vn" == ele_id) //coordonnée de la normale
 	{
+		/*TODO debug
+		 std::cout << "vn" << std::endl;
 		std::vector<SmartPtr<ListAttribute> >* att = objet->GetAttributes();
 		std::vector<SmartPtr<ListAttribute> >::reverse_iterator rit;
 		for (rit = att->rbegin(); rit < att->rend(); ++rit)
@@ -169,8 +176,9 @@ bool ImporterOBJ::processLine(Object* objet, std::istream& is)
 			is.clear();
 			skipLine(is);
 		}
-		((ListVertexNormals*)&(*(*rit)))->add(x,y,z);
+		((ListVertexNormals*) &(*(*rit)))->add(x, y, z);
 		//pMesh->addNormal(SVertex(x, y, z));
+		 */
 	}
 	else if ("f" == ele_id) // information sur une face pour un matériau
 	{
@@ -189,34 +197,36 @@ bool ImporterOBJ::processLine(Object* objet, std::istream& is)
 		}
 		//  Marche pour des polygones de 10 coordonée maximum
 		unsigned int vi[10]; // vertex indices.
-		unsigned int ni[10] = { -1, -1, -1, -1, }; // normal indices.
-		unsigned int ti[10] = { -1, -1, -1, -1, }; // tex indices.
+		unsigned int ni[10] =
+		{ -1, -1, -1, -1, }; // normal indices.
+		unsigned int ti[10] =
+		{ -1, -1, -1, -1, }; // tex indices.
 		int i = 0;
 		bool hasTex = objet->hasTextureVertices();
 		bool hasNor = objet->hasVertexNormals();
 
 		for (char c; i < 10; ++i)
 		{
-			if(!hasTex && !hasTex)
-			 is >> vi[i];
-			 else if(!hasTex)
-			 is >> vi[i] >> c >> c >> ni[i];
-			 else if(!hasTex)
-			 is >> vi[i] >> c >> ti[i];
-			 else
-			 is >> vi[i] >> c >> ti[i] >> c >>  ni[i];
-			 if (!is.good())
+			if (!hasTex && !hasTex)
+				is >> vi[i];
+			else if (!hasTex)
+				is >> vi[i] >> c >> c >> ni[i];
+			else if (!hasTex)
+				is >> vi[i] >> c >> ti[i];
+			else
+				is >> vi[i] >> c >> ti[i] >> c >> ni[i];
+			if (!is.good())
 				break;
 		}
 
 		//Ajouter le type de face
-		((ListFace*)&(*(*rit)))->setType(i+1);
+		((ListFace*) &(*(*rit)))->setType(i + 1);
 		//ajouter les indices de la nouvelle face
-		((ListFace*)&(*(*rit)))->addIndexVertices(vi,i+1);
-		if(hasTex)
-		((ListFace*)&(*(*rit)))->addIndexNormal(ni,i+1);
-		if(hasNor)
-		((ListFace*)&(*(*rit)))->addIndexTexture(ti,i+1);
+		((ListFace*) &(*(*rit)))->addIndexVertices(vi, i + 1);
+		if (hasTex)
+			((ListFace*) &(*(*rit)))->addIndexNormal(ni, i + 1);
+		if (hasNor)
+			((ListFace*) &(*(*rit)))->addIndexTexture(ti, i + 1);
 
 		is.clear();
 	}
@@ -225,17 +235,12 @@ bool ImporterOBJ::processLine(Object* objet, std::istream& is)
 	return true;
 }
 
-// the ".mtl" parsing logic is in the CMtlGrammar and CMtlActions classes (which use Boost's Spirit parser generator)
+
 void ImporterOBJ::parseMtlFile(Object* objet, const std::string& strFileName)
 {//TODO
-	//	render the ".mtl" file path application relative (instead of ".obj" file relative)
-	//path filePath = m_branchPath/strFileName;
-	//CLogger::get() << "  Parsing mtllib \"" << strFileName << "\"...\n";
-	//	Process...
-	//ImporterMTL::parse(filePath.string());
-	ImporterMTL::parse(objet, strFileName);
 
-	//CLogger::get() << "  \"" << strFileName << "\" fully parsed.\n";
+	//ImporterMTL::parse(objet, strFileName);
+
 }
 
 //	sauter une ligne

@@ -48,6 +48,7 @@ public:
     virtual ~Object();
     void add(ListAttribute* liste);
     void drawObject();
+    void initialize();
     std::vector<SmartPtr<ListAttribute> >* GetAttributes();
     bool hasTextureVertices();
     bool hasVertexNormals();
