@@ -46,8 +46,7 @@ void Object::drawObject()
 	drawObjectVA();
 
 }
-
-void Object::drawObjectVA()
+void Object::initialize()
 {
 	glEnableClientState(GL_VERTEX_ARRAY);
 
@@ -61,16 +60,28 @@ void Object::drawObjectVA()
 	float* tab = ((ListPoint*) &(*(*it)))->getTab(size);
 	glVertexPointer(3, GL_FLOAT, 0, tab);
 
+	glDisableClientState(GL_VERTEX_ARRAY);
+
+}
+
+void Object::drawObjectVA()
+{
+	glEnableClientState(GL_VERTEX_ARRAY);
+	std::cout << "draw int" << std::endl;
+	std::vector<SmartPtr<ListAttribute> >::iterator it;
 	int sizeind;
 	for (it = attributes.begin(); it < attributes.end(); ++it)
-	{
+	{std::cout << "draw for" << std::endl;
 		if ((*it)->getTypeAttribute() == FACE)
-		{
+		{std::cout << "draw forif1" << std::endl;
 			unsigned int* index = ((ListFace*) &(*(*it)))->getTabIndex(sizeind);
+			std::cout << "draw forif2" << std::endl;
 			glDrawElements(((ListFace*) &(*(*it)))->getType(), sizeind, GL_UNSIGNED_INT, index);
+			std::cout << "draw forif3" << std::endl;
 		}
 
 	}
+	std::cout << "draw out" << std::endl;
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
@@ -126,6 +137,4 @@ std::string Object::getPath()
 {
 	return path;
 }
-
-
 
