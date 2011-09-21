@@ -29,6 +29,7 @@
 #define LISTFACE_H_
 
 #include "ListAttribute.h"
+#include <iostream>
 
 class ListFace: public ListAttribute
 {

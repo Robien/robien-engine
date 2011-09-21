@@ -31,6 +31,7 @@
 #include "../../utils/include/Referenced.h"
 #include "../../utils/include/Vector3f.h"
 #include "../../utils/include/SmartPtr.h"
+#include <iostream>
 
 class Material: public Referenced
 {
